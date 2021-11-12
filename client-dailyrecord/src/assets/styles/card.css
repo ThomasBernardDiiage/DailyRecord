@@ -9,30 +9,30 @@ section.container{
     background-size: cover;
 }
 
-section.card{
+form.card{
     min-width: 200px;
     background-color: whitesmoke;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     padding: 20px 40px;
-    box-shadow: -2px 5px 15px 0px rgba(0,0,0,0.71);
+    box-shadow: -2px 5px 15px 0px #000000;
 }
 
-section.card h1{
+form.card h1{
     font-size: 25pt;
 }
 
-section.card label {
+form.card label {
     align-self: start;
 }
 
-section.card input{
+form.card input{
     margin: 7px 0;
     padding: 5px;
 }
 
-section.card button{
+form.card input[type="submit"]{
     border: none;
     border-radius: 3px;
     background-color: rgb(61, 147, 236);
@@ -41,17 +41,17 @@ section.card button{
     color: white;
 }
 
-section.card button:hover{
+form.card input[type="submit"]:hover{
     cursor: pointer;
 }
 
-section.card span{
+form.card span{
     border: solid gray 1px;
     border-radius: 3px;
     margin: 7px 0;
 }
 
-section.card a {
+form.card a {
     text-decoration: none;
     color: rgb(61, 147, 236);
     margin-top: 7px;
