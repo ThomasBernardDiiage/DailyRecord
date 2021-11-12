@@ -1,28 +1,18 @@
-<template>
-    <section class="container">
-        <section class="card">
-            <h1>Daily Record</h1>
-            <input type="text" placeholder="Enter your email">
-            <input type="text" placeholder="Enter your password">
-            <button>Log In</button>
-            <span></span>
-            <a href="">Don't have an account ? Create one</a>
-        </section>
-    </section>
-</template>
 
-<style>
 section.container{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    height: 100vh;
+    background-image: url('../images/background.jpg');
+    background-position:center;
+    background-size: cover;
 }
 
 section.card{
     min-width: 200px;
     background-color: whitesmoke;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     padding: 20px 40px;
@@ -30,6 +20,10 @@ section.card{
 
 section.card h1{
     font-size: 25pt;
+}
+
+section.card label {
+    align-self: start;
 }
 
 section.card input{
@@ -51,7 +45,7 @@ section.card button:hover{
 }
 
 section.card span{
-    border: solid black 1px;
+    border: solid gray 1px;
     border-radius: 3px;
     margin: 7px 0;
 }
@@ -61,8 +55,3 @@ section.card a {
     color: rgb(61, 147, 236);
     margin-top: 7px;
 }
-</style>
-
-
-<script>
-</script>
