@@ -16,6 +16,7 @@ section.card{
     display: flex;
     flex-direction: column;
     padding: 20px 40px;
+    box-shadow: -2px 5px 15px 0px rgba(0,0,0,0.71);
 }
 
 section.card h1{
