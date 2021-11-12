@@ -9,10 +9,10 @@
             <input v-model="password" name="inputPassword" type="password" placeholder="Enter your password">
 
             <label for="inputFirstName">First name :</label>
-            <input v-model="firstName" name="inputFirstName" type="text" placeholder="Enter your first name">
+            <input v-model="firstname" name="inputFirstName" type="text" placeholder="Enter your first name">
 
             <label for="inputLastName">Last name :</label>
-            <input v-model="lastName" name="inputLastName" type="text" placeholder="Enter your last name">
+            <input v-model="lastname" name="inputLastName" type="text" placeholder="Enter your last name">
 
             <input type="submit" value="Register">
             <span></span>
@@ -29,7 +29,7 @@
 
 <script>
     //#region all imports
-        const AuthenticationService = require('../services/authenticationService');
+        import AuthenticationService from '../services/authenticationService'
     //#endregion
 
     export default{
@@ -38,14 +38,17 @@
             return {
                 email: 'thomas.bernard@diiage.org',
                 password: 'Azerty@123',
-                firstName: 'Thomas',
-                lastName: 'Bernard'
+                firstname: 'Thomas',
+                lastname: 'Bernard'
             }
+        },
+        mounted(){
+            this.AuthenticationService = new AuthenticationService();
         },
         methods:{
             register(event){
                 event.preventDefault(); // Cancel the reload and data in url
-                AuthenticationService.register(this.email, this.password, this.firstName, this.lastName);
+                this.AuthenticationService.register(this.email, this.password, this.firstname, this.lastname);
             }
         }
     }

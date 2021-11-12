@@ -9,12 +9,11 @@ export default class AuthenticationService{
     // Take email and password in parameters
     // Return a bool
     async login(email, password){
-        console.log('try login with ' + email + password); // Call the API with the email adress and the password
 
-        await Axios.post('http://localhost:3000/authentication/login', {email, password})
+        await Axios.post('http://localhost:3000/authentication/login', {email, password}) // Make the api call
     }
 
-    register(email, password, firstName, LastName){
-        console.log('try register with ' + email + password + firstName + LastName);
+    async register(email, password, firstname, lastname){
+        await Axios.post('http://localhost:3000/authentication/register', {email, password, firstname, lastname}) // Make the api call
     }
 }
