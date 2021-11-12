@@ -2,6 +2,7 @@
 node_modules
 /dist
 
+docker-compose.yml
 
 # local env files
 .env.local

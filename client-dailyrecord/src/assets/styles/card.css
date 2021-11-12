@@ -1,0 +1,58 @@
+
+section.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('../images/background.jpg');
+    background-position:center;
+    background-size: cover;
+}
+
+form.card{
+    min-width: 200px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    box-shadow: -2px 5px 15px 0px #000000;
+}
+
+form.card h1{
+    font-size: 25pt;
+}
+
+form.card label {
+    align-self: start;
+}
+
+form.card input{
+    margin: 7px 0;
+    padding: 5px;
+}
+
+form.card input[type="submit"]{
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(61, 147, 236);
+    margin: 7px 0;
+    padding: 10px 20px;
+    color: white;
+}
+
+form.card input[type="submit"]:hover{
+    cursor: pointer;
+}
+
+form.card span{
+    border: solid gray 1px;
+    border-radius: 3px;
+    margin: 7px 0;
+}
+
+form.card a {
+    text-decoration: none;
+    color: rgb(61, 147, 236);
+    margin-top: 7px;
+}
