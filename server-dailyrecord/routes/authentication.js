@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
+const AuthenticationController = require('../controllers/authenticationController');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post('/login', AuthenticationController.login); // we call the AuthenticationController
+router.post('/register', AuthenticationController.register); // we call the AuthenticationController
+
 
 
 module.exports = router;
