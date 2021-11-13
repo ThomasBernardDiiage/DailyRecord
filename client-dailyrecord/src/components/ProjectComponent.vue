@@ -2,8 +2,8 @@
     <section class="itemProject">
         <h5>{{this.project.name}}</h5>
         <article>
-            <img src="../assets/images/record.png" alt="">
             <h5>{{this.project.numberOfDaily}}</h5>
+            <img src="../assets/images/record.png" alt="">
         </article>
     </section>
 </template>
@@ -35,7 +35,7 @@
 
     section.itemProject article img{
         width: 20px;
-        margin-right: 5px;
+        margin-left: 5px;
     }
 </style>
 
