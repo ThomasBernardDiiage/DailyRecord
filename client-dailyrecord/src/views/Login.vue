@@ -42,9 +42,8 @@
                 event.preventDefault(); // Cancel the reload and data in url
 
                 if(!(this.email == '' || this.password == '')){
-                    const token = await this.AuthenticationService.login(this.email, this.password);
-
-                    if(token !== undefined){
+                    const resultLogin = await this.AuthenticationService.login(this.email, this.password);
+                    if(resultLogin){
                         Router.push('/home')
                     }
                     else{
