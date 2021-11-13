@@ -9,8 +9,13 @@ export default class AuthenticationService{
     // Take email and password in parameters
     // Return a bool
     async login(email, password){
-
-        await Axios.post('http://localhost:3000/authentication/login', {email, password}) // Make the api call
+        try{
+            const callResult = await Axios.post('http://localhost:3000/authentication/login', {email, password}) // Make the api call
+            return callResult.data;
+        }
+        catch{
+            return undefined;
+        }
     }
 
     async register(email, password, firstname, lastname){

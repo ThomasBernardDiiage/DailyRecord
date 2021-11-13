@@ -1,14 +1,3 @@
-
-section.container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-image: url('../images/background.jpg');
-    background-position:center;
-    background-size: cover;
-}
-
 form.card{
     min-width: 200px;
     background-color: whitesmoke;
@@ -27,22 +16,9 @@ form.card label {
     align-self: start;
 }
 
-form.card input{
+form.card input:not([type="Submit"]){
     margin: 7px 0;
     padding: 5px;
-}
-
-form.card input[type="submit"]{
-    border: none;
-    border-radius: 3px;
-    background-color: rgb(61, 147, 236);
-    margin: 7px 0;
-    padding: 10px 20px;
-    color: white;
-}
-
-form.card input[type="submit"]:hover{
-    cursor: pointer;
 }
 
 form.card span{

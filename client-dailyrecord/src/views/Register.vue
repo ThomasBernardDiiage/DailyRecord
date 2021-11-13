@@ -14,7 +14,7 @@
             <label for="inputLastName">Last name :</label>
             <input v-model="lastname" name="inputLastName" type="text" placeholder="Enter your last name">
 
-            <input type="submit" value="Register">
+            <input type="submit" value="Register" class="buttonBlue">
             <span></span>
             <a href=""><router-link to="/">Already have an account ? Log In</router-link></a>
 
@@ -25,6 +25,8 @@
 
 <style>
     @import '../assets/styles/card.css'; /* import the styles sheet */
+    @import '../assets/styles/main.css'; /* import the styles sheet */
+
 </style>
 
 <script>
