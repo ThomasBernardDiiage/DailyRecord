@@ -41,9 +41,10 @@
 
 <script>
     //#region all imports
-        import Router from '../router/index'; // Import router for navigation
         import ProjectComponent from '../components/ProjectComponent.vue'; // Import our component
         import ButtonLogout from '../components/ButtonLogout.vue';
+        import AuthenticationService from '../services/authenticationService';
+
     //#endregion
 
 
@@ -57,20 +58,23 @@
             return {
                 projects:[
                     {
-                        name:'test',
+                        name:'Name of the project 1',
                         numberOfDaily:'8'
                     },
                     {
-                        name:'test2',
+                        name:'Name of the project 2',
                         numberOfDaily:'12'
                     }
                     
                 ]
             };
         },
+        mounted(){
+            this.AuthenticationService = new AuthenticationService();
+        },
         methods:{
             logout(){
-                Router.push('/');
+                this.AuthenticationService.logout();
             }
         }
     }
