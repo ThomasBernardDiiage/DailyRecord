@@ -1,10 +1,15 @@
+const UserModel = require('../models/userModel');
+
 class AuthenticationService{
     login(email, password){
         console.log('Log in with the mail : ' + email + ' and the password : ' + password);
+
+        
     }
 
-    register(email, password, firstname, lastname){
-        console.log('Register with email : ' + email + ' password : ' + password + ' firstname : ' + firstname + ' lastname : ' + lastname);
+    async register(email, password, firstname, lastname){
+        const user = await UserModel.create({email, password, firstname, lastname});
+        return user;
     }
 }
 

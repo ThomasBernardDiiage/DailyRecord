@@ -6,6 +6,7 @@ const cors = require('cors'); // import cors
 
 var indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
+const dataBaseConnection = require('./models/dataBaseConnection');
 
 
 var app = express();
@@ -19,5 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
+dataBaseConnection.initialize();
 
 module.exports = app;

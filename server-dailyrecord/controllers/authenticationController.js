@@ -8,8 +8,15 @@ class AuthenticationController {
     }
 
     async register(request, response){
-        console.log("ok");
-        AuthenticationService.register(request.body.email, request.body.password, request.body.firstname, request.body.lastname);
+        const user = await AuthenticationService.register(request.body.email, request.body.password, request.body.firstname, request.body.lastname);
+
+        // if a user is found
+        if(!user){
+            response.status(200).send();
+        }
+        else{
+            response.status(406).send();
+        }
     }
 
 }
