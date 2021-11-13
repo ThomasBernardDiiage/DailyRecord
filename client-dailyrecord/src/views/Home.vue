@@ -13,7 +13,6 @@
 
 
 <style>
-    @import '../assets/styles/card.css'; /* import the styles sheet */
     @import '../assets/styles/main.css'; /* import the styles sheet */
 
     section.container section.wrapper{
@@ -65,6 +64,7 @@
                         name:'test2',
                         numberOfDaily:'12'
                     }
+                    
                 ]
             };
         },
