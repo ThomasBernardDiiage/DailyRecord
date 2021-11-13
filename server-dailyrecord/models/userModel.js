@@ -42,6 +42,11 @@ class UserModel extends Model{
         });
         super.sync(); // sync changes
     }
+
+    // Return bool of the password == encrypt password
+    async verifyPassword(clearPassword) {
+        return await bcrypt.compare(clearPassword, this.password);
+      }
 }
 
 module.exports = UserModel;

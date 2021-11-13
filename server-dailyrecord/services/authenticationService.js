@@ -1,10 +1,16 @@
 const UserModel = require('../models/userModel');
 
 class AuthenticationService{
-    login(email, password){
-        console.log('Log in with the mail : ' + email + ' and the password : ' + password);
+    async login(email, password){
+        const user = await UserModel.findOne({where:{email:email}}); // We verify if the email adress already exist
 
-        
+        if(user){
+            const passwordMatched = await user.verifyPassword(password); // test passwords
+            if(passwordMatched){
+                return user; // if user exist and info ok return the user
+            }
+        }
+        return undefined;
     }
 
     async register(email, password, firstname, lastname){
