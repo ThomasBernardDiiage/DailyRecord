@@ -11,7 +11,7 @@ class AuthenticationController {
         const user = await AuthenticationService.register(request.body.email, request.body.password, request.body.firstname, request.body.lastname);
 
         // if a user is found
-        if(!user){
+        if(user){
             response.status(200).send();
         }
         else{

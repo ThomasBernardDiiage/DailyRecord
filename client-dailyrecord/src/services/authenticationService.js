@@ -14,6 +14,11 @@ export default class AuthenticationService{
     }
 
     async register(email, password, firstname, lastname){
-        await Axios.post('http://localhost:3000/authentication/register', {email, password, firstname, lastname}) // Make the api call
+        try{
+            await Axios.post('http://localhost:3000/authentication/register', {email, password, firstname, lastname}); // Make the api call
+            return true;
+        }catch{
+            return false;
+        }
     }
 }

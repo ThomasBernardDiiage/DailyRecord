@@ -46,9 +46,17 @@
             this.AuthenticationService = new AuthenticationService();
         },
         methods:{
-            register(event){
+            async register(event){
                 event.preventDefault(); // Cancel the reload and data in url
-                this.AuthenticationService.register(this.email, this.password, this.firstname, this.lastname);
+                const accountCreated = await this.AuthenticationService.register(this.email, this.password, this.firstname, this.lastname);
+                console.log(accountCreated);
+                if(accountCreated){
+                    console.log("ok");
+                    
+                }
+                else{
+                    alert('please verify all of your informations');
+                }
             }
         }
     }

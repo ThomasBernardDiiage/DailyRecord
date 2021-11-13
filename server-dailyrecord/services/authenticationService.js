@@ -8,8 +8,14 @@ class AuthenticationService{
     }
 
     async register(email, password, firstname, lastname){
-        const user = await UserModel.create({email, password, firstname, lastname});
-        return user;
+        const userExist = await UserModel.findOne({where:{email:email}}); // We verify if the email adress already exist
+        if(userExist){
+            return undefined;
+        }
+        else {
+            const user = await UserModel.create({email, password, firstname, lastname});
+            return user;
+        }
     }
 }
 
