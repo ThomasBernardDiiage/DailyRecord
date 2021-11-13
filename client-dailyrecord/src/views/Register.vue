@@ -29,7 +29,8 @@
 
 <script>
     //#region all imports
-        import AuthenticationService from '../services/authenticationService'
+        import AuthenticationService from '../services/authenticationService';
+        import Router from '../router/index';
     //#endregion
 
     export default{
@@ -49,13 +50,11 @@
             async register(event){
                 event.preventDefault(); // Cancel the reload and data in url
                 const accountCreated = await this.AuthenticationService.register(this.email, this.password, this.firstname, this.lastname);
-                console.log(accountCreated);
                 if(accountCreated){
-                    console.log("ok");
-                    
+                    Router.push('/'); // We go to the login page
                 }
                 else{
-                    alert('please verify all of your informations');
+                    alert('please verify all of your informations'); // We show an alert
                 }
             }
         }
