@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes, Model } = require('sequelize'); // import all packages
+const bcrypt = require('bcrypt');
 
 
 class UserModel extends Model{
@@ -29,6 +30,13 @@ class UserModel extends Model{
             }
         },
         {
+            hooks:{
+                beforeCreate: async (user, options) => {
+                    // Hashing the password
+                    const hashedPassword = await bcrypt.hash(user.password, 10);
+                    user.password = hashedPassword; // We set the new password
+                }
+            },
             sequelize:sequelizeInstance,
             modelName:'User'
         });
