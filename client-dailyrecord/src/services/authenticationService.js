@@ -20,12 +20,6 @@ export default class AuthenticationService{
         }
     }
 
-    async logout(){
-        localStorage.removeItem('JsonWebToken'); // remove the token in memory
-        Router.push('/'); // go to loginPage
-
-    }
-
     async register(email, password, firstname, lastname){
         try{
             await Axios.post('http://localhost:3000/authentication/register', {email, password, firstname, lastname}); // Make the api call
@@ -33,5 +27,13 @@ export default class AuthenticationService{
         }catch{
             return false;
         }
+    }
+
+    // Remove the webtoken from memory
+    // And go to the loginpage
+    async logout(){
+        localStorage.removeItem('JsonWebToken'); // remove the token in memory
+        Router.push('/'); // go to loginPage
+
     }
 }
