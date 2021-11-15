@@ -4,8 +4,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors'); // import cors
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
+const projectRouter = require('./routes/project');
 const dataBaseConnection = require('./models/dataBaseConnection');
 
 
@@ -20,6 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/project', projectRouter);
+
+
+
 dataBaseConnection.initialize();
 
 module.exports = app;
