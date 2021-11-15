@@ -73,35 +73,14 @@
         },
         data(){
             return {
-                projects:[
-                    {
-                        name:'Name of the project 1',
-                        numberOfDaily:'8'
-                    },
-                    {
-                        name:'Name of the project 2',
-                        numberOfDaily:'12'
-                    },
-                    {
-                        name:'Name of the project 2',
-                        numberOfDaily:'12'
-                    },
-                    {
-                        name:'Name of the project 2',
-                        numberOfDaily:'12'
-                    },
-                    {
-                        name:'Name of the project 2',
-                        numberOfDaily:'12'
-                    }
-                ]
+                projects : undefined
             };
         },
-        mounted(){
+        async mounted(){
             this.AuthenticationService = new AuthenticationService();
             this.ProjectService = new ProjectService();
-            this.projects = ProjectService.getProjects();
-            console.logout(this.projects);
+            this.projects = await this.ProjectService.getProjects();
+            
         },
         methods:{
             logout(){

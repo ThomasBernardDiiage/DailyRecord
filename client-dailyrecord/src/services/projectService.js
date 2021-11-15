@@ -8,6 +8,5 @@ export default class ProjectService{
     async getProjects(){
 
         return await ApiService.sendGetWithToken('projects', true);
-
     }
 }
