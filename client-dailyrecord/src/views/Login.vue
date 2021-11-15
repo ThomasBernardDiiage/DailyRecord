@@ -17,7 +17,6 @@
 <style>
     @import '../assets/styles/card.css'; /* import the styles sheet */
     @import '../assets/styles/main.css'; /* import the styles sheet */
-
 </style>
 
 <script>

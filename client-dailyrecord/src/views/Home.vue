@@ -38,7 +38,7 @@
         display: flex;
         align-items: baseline;
         flex-direction: column;
-        overflow:scroll;
+        overflow: auto;
         border: solid 1px black;
         border-radius: 5px;
     }
@@ -58,6 +58,7 @@
         import ButtonLogout from '../components/ButtonLogout.vue';
         import ButtonProfile from '../components/ButtonProfile.vue';
         import Router from '../router/index';
+        import ProjectService from '../services/projectService'; //add the service
 
 
     //#endregion
@@ -80,20 +81,33 @@
                     {
                         name:'Name of the project 2',
                         numberOfDaily:'12'
+                    },
+                    {
+                        name:'Name of the project 2',
+                        numberOfDaily:'12'
+                    },
+                    {
+                        name:'Name of the project 2',
+                        numberOfDaily:'12'
+                    },
+                    {
+                        name:'Name of the project 2',
+                        numberOfDaily:'12'
                     }
-                    
                 ]
             };
         },
         mounted(){
             this.AuthenticationService = new AuthenticationService();
+            this.ProjectService = new ProjectService();
+            this.projects = ProjectService.getProjects();
+            console.logout(this.projects);
         },
         methods:{
             logout(){
                 this.AuthenticationService.logout();
             },
             createProject(){
-                console.log('ok');
                 Router.push('/projectCreation');
             }
         }
