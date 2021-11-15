@@ -12,15 +12,6 @@ form.card h1{
     font-size: 25pt;
 }
 
-form.card label {
-    align-self: start;
-}
-
-form.card input:not([type="Submit"]){
-    margin: 7px 0;
-    padding: 5px;
-}
-
 form.card span{
     border: solid gray 1px;
     border-radius: 3px;

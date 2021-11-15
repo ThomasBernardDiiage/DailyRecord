@@ -21,6 +21,7 @@
 
     section.itemProject:hover{
         background-color: rgb(40, 97, 158);
+        color: white;
     }
 
     section.itemProject h5{
@@ -30,7 +31,7 @@
     section.itemProject article{
         display: flex;
         align-items: center;
-        margin: 0 20px;
+        margin: 0 10px;
     }
 
     section.itemProject article img{

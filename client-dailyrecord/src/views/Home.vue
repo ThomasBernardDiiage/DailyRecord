@@ -1,12 +1,18 @@
 <template>
     <section class="container">
         <section class="wrapper">
-            <ButtonLogout @click.native="logout()"></ButtonLogout>
+            <div>
+                <ButtonLogout @click.native="logout()"></ButtonLogout>
+                <ButtonProfile></ButtonProfile>
+            </div>
+            
             <section class="listProjects">
                 <ProjectComponent v-for="project in projects" v-bind:key="project.id" v-bind:project="project"></ProjectComponent>
             </section>
 
-            <button class="buttonBlue">Create a new project</button>
+        
+        <button @click="createProject()" class="buttonBlue">Create a new project</button>
+
         </section>
     </section>
 </template>
@@ -16,7 +22,7 @@
     @import '../assets/styles/main.css'; /* import the styles sheet */
 
     section.container section.wrapper{
-        min-width: 300px;
+        min-width: 400px;
         background-color: whitesmoke;
         justify-content:space-between;
         border-radius: 10px;
@@ -37,13 +43,22 @@
         border-radius: 5px;
     }
 
+    section.wrapper div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
 </style>
 
 <script>
     //#region all imports
         import ProjectComponent from '../components/ProjectComponent.vue'; // Import our component
-        import ButtonLogout from '../components/ButtonLogout.vue';
         import AuthenticationService from '../services/authenticationService';
+        import ButtonLogout from '../components/ButtonLogout.vue';
+        import ButtonProfile from '../components/ButtonProfile.vue';
+        import Router from '../router/index';
+
 
     //#endregion
 
@@ -52,7 +67,8 @@
         name:'Home',
         components:{
             ProjectComponent,
-            ButtonLogout
+            ButtonLogout,
+            ButtonProfile
         },
         data(){
             return {
@@ -75,6 +91,10 @@
         methods:{
             logout(){
                 this.AuthenticationService.logout();
+            },
+            createProject(){
+                console.log('ok');
+                Router.push('/projectCreation');
             }
         }
     }

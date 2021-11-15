@@ -2,7 +2,7 @@ section.container{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 700px;
     background-image: url('../images/background.jpg');
     background-position:center;
     background-size: cover;
@@ -21,4 +21,16 @@ section.container{
 
 .buttonBlue:hover{
     background-color: rgb(40, 97, 158);
+}
+
+label {
+    align-self: start;
+}
+input:not([type="Submit"]){
+    margin: 7px 0;
+    padding: 5px;
+}
+
+textarea{
+    resize: none;
 }
