@@ -13,7 +13,18 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: () => import('../views/Register.vue')
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: () => import('../views/Home.vue')
+  },
+  {
+    path: '/projectCreation',
+    name: 'ProjectCreation',
+    component: () => import('../views/ProjectCreation.vue')
   }
+  
 ]
 
 const router = new VueRouter({
