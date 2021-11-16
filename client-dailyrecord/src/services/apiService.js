@@ -10,7 +10,11 @@ export default class ApiService{
     static async sendGetWithToken(url, useToken){
         try{
             if(useToken){
-                return await Axios.get(this.baseUrl + url);
+                return await Axios.get(this.baseUrl + url, {
+                    headers:{
+                        Authorization: localStorage.getItem("JsonWebToken")
+                    }
+                });
             }
         }
         catch {
@@ -23,7 +27,7 @@ export default class ApiService{
             if(useToken){
                 return await Axios.post(this.baseUrl + url, body, {
                     headers:{
-                        Authorization: "Bearer " + localStorage.getItem("JsonWebToken")
+                        Authorization: localStorage.getItem("JsonWebToken")
                     }
                 })
             }

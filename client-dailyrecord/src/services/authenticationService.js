@@ -11,7 +11,7 @@ export default class AuthenticationService{
     // Return a bool
     async login(email, password){
 
-        const callResult = await ApiService.sendPostWithToken('authentication/login', {email, password});
+        const callResult = await ApiService.sendPostWithToken('authentication/login', {email, password}, false);
 
         if(callResult){
             localStorage.setItem('JsonWebToken',callResult.data);
