@@ -75,11 +75,14 @@ export default {
             project : undefined
         };
     },
+    params:{
+        projectId:undefined
+    },
     mounted(){
+        console.log(this.projectId);
         this.project = {
             name:"Boss simulator",
-            dailyMeetings:[
-                {
+            dailyMeetings:[{
                     id:1,
                     name:"English daily",
                     timestamp: "4"

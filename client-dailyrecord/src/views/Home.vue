@@ -92,8 +92,8 @@
                 Router.push('/projectCreation');
             },
             displayProject(id){
-                console.log(id);
-                Router.push('/project')
+                //Router.push('/project');
+                Router.push({path:'/project', params:{projectId:id}})
             }
         }
     }
