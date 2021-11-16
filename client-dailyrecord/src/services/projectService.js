@@ -7,6 +7,7 @@ export default class ProjectService{
 
     async getProjects(){
 
-        return await ApiService.sendGetWithToken('projects', true);
+        const resultCall = await ApiService.sendGetWithToken('project', true);
+        return resultCall.data;
     }
 }
