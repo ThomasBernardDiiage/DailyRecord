@@ -7,26 +7,26 @@ class StampModel extends Model{
 
     static async init(sequelizeInstance){
         super.init({
-            sId:{
+            stampId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 primaryKey:true,
                 autoIncrement:true
             },
-            sLocation:{
+            stampLocation:{
                 type:DataTypes.INTEGER,
                 allowNull:false
             },
-            sName:{
+            stampName:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            sMeetingId:{
+            stampMeetingId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 references: {
                     model: MeetingModel,
-                    key: 'mId'
+                    key: 'meetingId'
                 }
             }
         },

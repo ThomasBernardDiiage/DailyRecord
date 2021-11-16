@@ -26,21 +26,21 @@ class DataBaseConnection {
       UserModel.belongsToMany(ProjectModel, {
         through: 'UserProjectModel',
         as: 'works',
-        foreignKey: 'uId'
+        foreignKey: 'userId'
       }); // Un projet contient plusieurs utilisateurs
 
       ProjectModel.belongsToMany(UserModel, {
         through: 'UserProjectModel',
         as: 'works',
-        foreignKey: 'pId'
+        foreignKey: 'projectId'
       }); // Un utilisateur contient plusieurs projets
 
       ProjectModel.hasMany(MeetingModel, {
-        foreignKey: 'mProjectId'
+        foreignKey: 'meetingProjectId'
       }); // Un meeting appartient à un projet
 
       MeetingModel.hasMany(StampModel, {
-        foreignKey: 'sMeetingId'
+        foreignKey: 'stampMeetingId'
       }); // Un stamp appartient à un meeting
     });
   }

@@ -7,34 +7,34 @@ class MeetingModel extends Model{
 
     static async init(sequelizeInstance){
         super.init({
-            mId:{
+            meetingId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 primaryKey:true,
                 autoIncrement:true
             },
-            mDuration:{
+            meetingDuration:{
                 type:DataTypes.INTEGER,
                 allowNull:false
             },
-            mDescription:{
+            meetingDescription:{
                 type:DataTypes.STRING,
                 allowNull:true
             },
-            mFile:{
+            meetingFile:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            mDate:{
+            meetingDate:{
                 type:DataTypes.DATE,
                 allowNull:false
             },
-            mProjectId:{
+            meetingProjectId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 references: {
                     model: ProjectModel,
-                    key: 'pId'
+                    key: 'projectId'
                 }
             }
         },

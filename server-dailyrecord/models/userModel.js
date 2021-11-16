@@ -6,25 +6,25 @@ class UserModel extends Model{
 
     static async init(sequelizeInstance){
         super.init({
-            uId:{
+            userId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 primaryKey:true,
                 autoIncrement:true
             },
-            uMail:{
+            userMail:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            uPassword:{
+            userPassword:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            uFirstname:{
+            userFirstname:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            uLastname:{
+            userLastname:{
                 type:DataTypes.STRING,
                 allowNull:false
             }

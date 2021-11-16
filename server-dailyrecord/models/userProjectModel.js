@@ -8,22 +8,22 @@ class UserProjectModel extends Model{
 
     static async init(sequelizeInstance){
         super.init({
-            uId:{
+            userId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 primaryKey:true,
                 references: {
                     model: UserModel,
-                    key: 'uId'
+                    key: 'userId'
                 }
             },
-            pId:{
+            projectId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 primaryKey:true,
                 references: {
                     model: ProjectModel,
-                    key: 'pId'
+                    key: 'projectId'
                 }
             }
         },

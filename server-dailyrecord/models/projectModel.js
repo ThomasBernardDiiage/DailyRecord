@@ -6,25 +6,25 @@ class ProjectModel extends Model{
 
     static async init(sequelizeInstance){
         super.init({
-            pId:{
+            projectId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 primaryKey:true,
                 autoIncrement:true
             },
-            pName:{
+            projectName:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            pDescription:{
+            projectDescription:{
                 type:DataTypes.STRING,
                 allowNull:true
             },
-            pStartDate:{
+            projectStartDate:{
                 type:DataTypes.DATEONLY,
                 allowNull:false
             },
-            pEndDate:{
+            projectEndDate:{
                 type:DataTypes.DATEONLY,
                 allowNull:true
             }
