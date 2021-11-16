@@ -6,25 +6,25 @@ class UserModel extends Model{
 
     static async init(sequelizeInstance){
         super.init({
-            id:{
+            userId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 primaryKey:true,
                 autoIncrement:true
             },
-            email:{
+            userMail:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            password:{
+            userPassword:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            firstname:{
+            userFirstname:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            lastname:{
+            userLastname:{
                 type:DataTypes.STRING,
                 allowNull:false
             }
@@ -38,9 +38,9 @@ class UserModel extends Model{
                 }
             },
             sequelize:sequelizeInstance,
-            modelName:'User'
+            modelName:'Users'
         });
-        super.sync(); // sync changes
+        await super.sync(); // sync changes
     }
 
     // Return bool of the password == encrypt password
