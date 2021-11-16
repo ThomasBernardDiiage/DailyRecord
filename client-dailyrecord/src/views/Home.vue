@@ -3,11 +3,12 @@
         <section class="wrapper">
             <div>
                 <ButtonLogout @click.native="logout()"></ButtonLogout>
+                <h1>All my projects</h1>
                 <ButtonProfile></ButtonProfile>
             </div>
             
             <section class="listProjects">
-                <ProjectComponent v-for="project in projects" v-bind:key="project.id" v-bind:project="project"></ProjectComponent>
+                <ProjectComponent v-for="project in projects" v-bind:key="project.id" v-bind:project="project" @click.native="displayProject(project.id)"></ProjectComponent>
             </section>
 
         
@@ -46,6 +47,7 @@
     section.wrapper div {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         margin-bottom: 5px;
     }
 
@@ -88,6 +90,10 @@
             },
             createProject(){
                 Router.push('/projectCreation');
+            },
+            displayProject(id){
+                //Router.push('/project');
+                Router.push({path:'/project', params:{projectId:id}})
             }
         }
     }
