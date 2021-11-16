@@ -5,7 +5,8 @@ class TokenService{
 
     getUserId(token){
         const decodedToken = jwt_decode(token);
-        console.log(decodedToken);
+
+        return decodedToken.sub;
     }
 }
 

@@ -7,6 +7,9 @@ class ProjectController {
     async getProjects(request, response){
        
         const token  = request.headers.authorization; // We get the token
+        const decodedToken = TokenService.getUserId(token);
+
+        console.log(decodedToken);
 
         const result = [
             {
