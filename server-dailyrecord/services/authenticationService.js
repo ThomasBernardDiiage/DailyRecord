@@ -2,7 +2,7 @@ const UserModel = require('../models/userModel');
 
 class AuthenticationService{
     async login(email, password){
-        const user = await UserModel.findOne({where:{email:email}}); // We verify if the email adress already exist
+        const user = await UserModel.findOne({where:{userMail:email}}); // We verify if the email adress already exist
 
         if(user){
             const passwordMatched = await user.verifyPassword(password); // test passwords
@@ -14,12 +14,12 @@ class AuthenticationService{
     }
 
     async register(email, password, firstname, lastname){
-        const userExist = await UserModel.findOne({where:{email:email}}); // We verify if the email adress already exist
+        const userExist = await UserModel.findOne({where:{userMail:email}}); // We verify if the email adress already exist
         if(userExist){
             return undefined;
         }
         else {
-            const user = await UserModel.create({email, password, firstname, lastname});
+            const user = await UserModel.create({userMail:email, userPassword:password, userFirstname:firstname, userLastname:lastname});
             return user;
         }
     }
