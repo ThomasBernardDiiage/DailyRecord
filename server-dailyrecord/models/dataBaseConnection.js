@@ -36,11 +36,11 @@ class DataBaseConnection {
       }); // Un utilisateur contient plusieurs projets
 
       ProjectModel.hasMany(MeetingModel, {
-        foreignKey: 'meetingProjectId'
+        foreignKey: 'projectId'
       }); // Un meeting appartient à un projet
 
       MeetingModel.hasMany(StampModel, {
-        foreignKey: 'stampMeetingId'
+        foreignKey: 'metingId'
       }); // Un stamp appartient à un meeting
     });
   }
