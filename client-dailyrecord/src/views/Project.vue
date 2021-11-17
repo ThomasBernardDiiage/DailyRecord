@@ -72,14 +72,11 @@ export default {
     },
     data(){
         return {
-            project : undefined
+            project : undefined,
         };
     },
-    params:{
-        projectId:undefined
-    },
     mounted(){
-        console.log(this.projectId);
+        console.log(Router);
         this.project = {
             name:"Boss simulator",
             dailyMeetings:[{
