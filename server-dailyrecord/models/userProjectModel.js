@@ -14,7 +14,7 @@ class UserProjectModel extends Model{
                 primaryKey:true,
                 references: {
                     model: UserModel,
-                    key: 'userId'
+                    key: 'id'
                 }
             },
             projectId:{
@@ -23,7 +23,7 @@ class UserProjectModel extends Model{
                 primaryKey:true,
                 references: {
                     model: ProjectModel,
-                    key: 'projectId'
+                    key: 'id'
                 }
             }
         },
