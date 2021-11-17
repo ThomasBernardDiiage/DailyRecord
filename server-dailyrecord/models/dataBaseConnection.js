@@ -40,7 +40,7 @@ class DataBaseConnection {
       }); // Un meeting appartient à un projet
 
       MeetingModel.hasMany(StampModel, {
-        foreignKey: 'metingId'
+        foreignKey: 'meetingId'
       }); // Un stamp appartient à un meeting
     });
   }
