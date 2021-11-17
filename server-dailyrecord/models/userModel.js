@@ -33,8 +33,8 @@ class UserModel extends Model{
             hooks:{
                 beforeCreate: async (user, options) => {
                     // Hashing the password
-                    const hashedPassword = await bcrypt.hash(user.password, 10);
-                    user.password = hashedPassword; // We set the new password
+                    const hashedPassword = await bcrypt.hash(user.userPassword, 10);
+                    user.userPassword = hashedPassword; // We set the new password
                 }
             },
             sequelize:sequelizeInstance,
@@ -45,7 +45,7 @@ class UserModel extends Model{
 
     // Return bool of the password == encrypt password
     async verifyPassword(clearPassword) {
-        return await bcrypt.compare(clearPassword, this.password);
+        return await bcrypt.compare(clearPassword, this.userPassword);
       }
 }
 

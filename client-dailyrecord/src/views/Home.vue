@@ -3,11 +3,12 @@
         <section class="wrapper">
             <div>
                 <ButtonLogout @click.native="logout()"></ButtonLogout>
+                <h1>All my projects</h1>
                 <ButtonProfile></ButtonProfile>
             </div>
             
             <section class="listProjects">
-                <ProjectComponent v-for="project in projects" v-bind:key="project.id" v-bind:project="project"></ProjectComponent>
+                <ProjectComponent v-for="project in projects" v-bind:key="project.id" v-bind:project="project" @click.native="displayProject(project.id)"></ProjectComponent>
             </section>
 
         
@@ -38,7 +39,7 @@
         display: flex;
         align-items: baseline;
         flex-direction: column;
-        overflow:scroll;
+        overflow: auto;
         border: solid 1px black;
         border-radius: 5px;
     }
@@ -46,6 +47,7 @@
     section.wrapper div {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         margin-bottom: 5px;
     }
 
@@ -58,6 +60,7 @@
         import ButtonLogout from '../components/ButtonLogout.vue';
         import ButtonProfile from '../components/ButtonProfile.vue';
         import Router from '../router/index';
+        import ProjectService from '../services/projectService'; //add the service
 
 
     //#endregion
@@ -72,29 +75,25 @@
         },
         data(){
             return {
-                projects:[
-                    {
-                        name:'Name of the project 1',
-                        numberOfDaily:'8'
-                    },
-                    {
-                        name:'Name of the project 2',
-                        numberOfDaily:'12'
-                    }
-                    
-                ]
+                projects : undefined
             };
         },
-        mounted(){
+        async mounted(){
             this.AuthenticationService = new AuthenticationService();
+            this.ProjectService = new ProjectService();
+            this.projects = await this.ProjectService.getProjects();
+            
         },
         methods:{
             logout(){
                 this.AuthenticationService.logout();
             },
             createProject(){
-                console.log('ok');
                 Router.push('/projectCreation');
+            },
+            displayProject(id){
+                //Router.push('/project');
+                Router.push({path:'/project', params:{projectId:id}})
             }
         }
     }

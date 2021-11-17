@@ -12,7 +12,7 @@
             <textarea name="projectDescription"></textarea>
 
             <div>
-                <ButtonGoBack @click.native="goback()"></ButtonGoBack>
+                <ButtonGoback @click.native="goback()"></ButtonGoback>
                 <button class="buttonBlue">Create the project</button>
             </div>
         </section>
@@ -48,7 +48,7 @@
 
 <script>
     //#region all imports
-        import ButtonGoBack from '../components/ButtonGoback.vue';
+        import ButtonGoback from '../components/ButtonGoback.vue';
         import Router from '../router';
 
 
@@ -58,7 +58,7 @@
     export default {
         name:'Home',
         components:{
-            ButtonGoBack,
+            ButtonGoback,
 
         },
         data(){

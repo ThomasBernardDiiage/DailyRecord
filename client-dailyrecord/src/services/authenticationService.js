@@ -1,6 +1,6 @@
 //#region all imports
-    import Axios from 'axios';
     import Router from '../router/index'; // Import router for navigation
+    import ApiService from '../services/apiService'; // Import the service
 //#endregion
 
 
@@ -10,21 +10,24 @@ export default class AuthenticationService{
     // Take email and password in parameters
     // Return a bool
     async login(email, password){
-        try{
-            const callResult = await Axios.post('http://localhost:3000/authentication/login', {email, password}) // Make the api call
+
+        const callResult = await ApiService.sendPostWithToken('authentication/login', {email, password}, false);
+
+        if(callResult){
             localStorage.setItem('JsonWebToken',callResult.data);
             return true;
-        }
-        catch{
+        } 
+        else {
             return false;
         }
     }
 
     async register(email, password, firstname, lastname){
-        try{
-            await Axios.post('http://localhost:3000/authentication/register', {email, password, firstname, lastname}); // Make the api call
+        const resultCall = await ApiService.sendPostWithToken('authentication/register', {email, password, firstname, lastname}, false); // Make the api call
+
+        if(resultCall){
             return true;
-        }catch{
+        } else {
             return false;
         }
     }
