@@ -1,3 +1,4 @@
+const { createProject } = require('../controllers/projectController');
 const projectController = require('../controllers/projectController');
 const ProjectModel = require('../models/projectModel');
 const UserModel = require('../models/userModel');
@@ -25,13 +26,48 @@ class ProjectService{
     async createProject(userId, name, description, startDate, endDate){
 
         // Insert the project
+        try{
+            const result = await ProjectModel.create({
+                //name	description	startDate	endDate	
+                name:name,
+                description:description,
+                startDate,
+                endDate
+            });
 
+            // Insert into Works
+            const projectId = result.dataValues.id;
+            if (await this.assignUserToProject(userId, projectId)){
+                // Return bool
+                return true;
+            }
+            else
+            {
+                // Return bool
+                return false;
+            }
 
-        // Insert into Works
-
-
-        // Return bool
+        }
+        catch{
+            // Return bool
+            return false;
+        }
     }
+
+    async assignUserToProject(userId,projectId){
+
+        //assign a user to a specific project
+        try{
+            UserProjectModel.create({
+                userId,
+                projectId
+            });
+            return true;
+        }
+        catch{
+            return false;
+        }
+    } 
 }
 
 module.exports = new ProjectService();

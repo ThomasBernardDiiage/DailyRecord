@@ -22,7 +22,20 @@ class ProjectController {
     }
 
     async createProject(request, response){
-        response.status(200).send();
+        
+        const userId = TokenService.getUserId(request.headers.authorization);
+        const name = request.body.name;
+        const description = request.body.description;
+        const startDate = request.body.startDate;
+        const endDate = request.body.endDate;
+
+        const projectCreated = await ProjectService.createProject(userId,name,description,startDate,endDate);
+        if(projectCreated){
+            response.status(200).send();
+        }
+        else{
+            response.status(418).send();
+        }
     }
 
     async addMemberProject(request, response){

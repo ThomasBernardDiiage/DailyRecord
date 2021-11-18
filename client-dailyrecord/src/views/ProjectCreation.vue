@@ -5,9 +5,6 @@
             <label for="projectName">Project name :</label>
             <input name="projectName" type="text">
 
-            <label for="projectMembersMail">Enter a email :</label>
-            <input name="projectMembersMail" type="email">
-
             <label for="projectDescription">Project description :</label>
             <textarea name="projectDescription"></textarea>
 
