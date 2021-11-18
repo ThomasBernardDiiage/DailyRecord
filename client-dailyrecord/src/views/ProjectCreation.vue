@@ -81,23 +81,20 @@
         },
 
         methods:{
-            createProject(){
+            async createProject(){
                 if(this.projectName != '' && this.projectDescription != '' && this.startDate != '' && this.endDate != '' && this.startDate < this.endDate){
-                    const resultCreate = this.ProjectService.createProject(
-                        this.projectName,
-                        this.projectDescription,
-                        this.startDate,
-                        this.endDate
-                        );
+                    const resultCreate = await this.ProjectService.createProject(this.projectName, this.projectDescription, this.startDate, this.endDate);
+                    console.log(resultCreate);
                     if(resultCreate){
+
                         Router.push('/home') //refaire le call pour refresh la liste des projets dans home !
                     }
                     else{
-                        alert('Error, please verify your informations');
+                        alert('Error, cant create this project');
                     }
                 }
                 else{
-                    alert('Error, please verify your informations');
+                    alert('Please enter all informations');
                 }
             },
 

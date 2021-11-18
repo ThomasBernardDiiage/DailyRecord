@@ -11,11 +11,11 @@ export default class ProjectService{
     }
 
     async createProject(name,description,startDate,endDate){
-        await ApiService.sendPostWithToken('project', {
-            name,
-            description,
-            startDate,
-            endDate
-        }, true);
+        const resultCall = await ApiService.sendPostWithToken('project', { name, description, startDate, endDate }, true);
+
+        if(resultCall){
+            return true
+        }
+        return false;
     }
 }

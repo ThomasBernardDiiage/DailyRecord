@@ -80,7 +80,6 @@
             this.AuthenticationService = new AuthenticationService();
             this.ProjectService = new ProjectService();
             this.projects = await this.ProjectService.getProjects();
-            
         },
         methods:{
             logout(){
