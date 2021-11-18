@@ -1,4 +1,5 @@
 const TokenService = require('../services/tokenService');
+const ProjectService = require('../services/projectService');
 
 class ProjectController {
 
@@ -6,30 +7,26 @@ class ProjectController {
     // get projects for one user
     async getProjects(request, response){
        
-        const token  = request.headers.authorization; // We get the token
-        const decodedToken = TokenService.getUserId(token);
+        const userId = TokenService.getUserId(request.headers.authorization); // Get the user id
 
-        console.log(decodedToken);
+        const projects = await ProjectService.getProjects(userId); // Call the method in project services
+        response.status(200).send(projects);
+    }
 
-        const result = [
-            {
-                id:1,
-                name:"BossSimulator",
-                numberOfDaily: 4
-            },
-            {
-                id:2,
-                name:"SmartCity",
-                numberOfDaily: 7
-            }
-        ];
+    async getProject(request, response){
+        const projectId = 1;
+        const userId = TokenService.getUserId(request.headers.authorization);
 
-        response.status(200).send(result);
+        const project = await ProjectService.getProject(userId, projectId);
+        response.status(200).send(project);
     }
 
     async createProject(request, response){
         response.status(200).send();
+    }
 
+    async addMemberProject(request, response){
+        
     }
 }
 
