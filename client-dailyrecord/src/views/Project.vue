@@ -8,7 +8,7 @@
             </section>
             <div>
                 <ButtonGoback @click.native="goback()"></ButtonGoback>
-                <button class="buttonBlue">Add members</button>
+                <button @click="projectSetting()" class="buttonBlue">Settings</button>
             </div>
         </section>
     </section>
@@ -76,7 +76,6 @@ export default {
         };
     },
     mounted(){
-        console.log(Router);
         this.project = {
             name:"Boss simulator",
             dailyMeetings:[{
@@ -95,6 +94,9 @@ export default {
     methods:{
             goback(){
                 Router.push('/home');
+            },
+            projectSetting(){
+                Router.push('/project/1/setting');
             }
         }
 }
