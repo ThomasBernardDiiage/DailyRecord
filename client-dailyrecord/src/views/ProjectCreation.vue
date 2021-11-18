@@ -84,7 +84,6 @@
             async createProject(){
                 if(this.projectName != '' && this.projectDescription != '' && this.startDate != '' && this.endDate != '' && this.startDate < this.endDate){
                     const resultCreate = await this.ProjectService.createProject(this.projectName, this.projectDescription, this.startDate, this.endDate);
-                    console.log(resultCreate);
                     if(resultCreate){
 
                         Router.push('/home') //refaire le call pour refresh la liste des projets dans home !

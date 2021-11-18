@@ -10,6 +10,11 @@ export default class ProjectService{
         return resultCall.data;
     }
 
+    async getProject(id){
+        const resultCall = await ApiService.sendGetWithToken('project/' + id, true);
+        return resultCall.data;
+    }
+
     async createProject(name,description,startDate,endDate){
         const resultCall = await ApiService.sendPostWithToken('project', { name, description, startDate, endDate }, true);
 
@@ -18,4 +23,6 @@ export default class ProjectService{
         }
         return false;
     }
+
+    
 }
