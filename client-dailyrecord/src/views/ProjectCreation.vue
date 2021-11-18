@@ -3,17 +3,20 @@
         <section class="wrapper">
             <h1>Project creation</h1>
             <label for="projectName">Project name :</label>
-            <input name="projectName" type="text">
-
-            <label for="projectMembersMail">Enter a email :</label>
-            <input name="projectMembersMail" type="email">
+            <input name="projectName" v-model="projectName" type="text" placeholder="Enter your project name">
 
             <label for="projectDescription">Project description :</label>
-            <textarea name="projectDescription"></textarea>
+            <textarea name="projectDescription" v-model="projectDescription" placeholder="Enter your project description"></textarea>
+
+            <label for="startDate"> Start date:</label>
+            <input type="date" id="startDate" name="startDate" v-model="startDate" min="2021-11-18">
+
+            <label for="endDate"> End date:</label>
+            <input type="date" id="endDate" name="endDate" v-model="endDate" v-bind:min="this.startDate">
 
             <div>
                 <ButtonGoback @click.native="goback()"></ButtonGoback>
-                <button class="buttonBlue">Create the project</button>
+                <button class="buttonBlue" @click="createProject()">Create</button>
             </div>
         </section>
     </section>
@@ -50,6 +53,7 @@
     //#region all imports
         import ButtonGoback from '../components/ButtonGoback.vue';
         import Router from '../router';
+        import ProjectService from '../services/projectService'; //add the service
 
 
     //#endregion
@@ -62,9 +66,41 @@
 
         },
         data(){
-            return {};
+
+
+            return {
+                projectName: "",
+                projectDescription: "",
+                startDate: "",
+                endDate: ""
+            };
         },
+        
+        mounted(){
+            this.ProjectService = new ProjectService();
+        },
+
         methods:{
+            createProject(){
+                if(this.projectName != '' && this.projectDescription != '' && this.startDate != '' && this.endDate != '' && this.startDate < this.endDate){
+                    const resultCreate = this.ProjectService.createProject(
+                        this.projectName,
+                        this.projectDescription,
+                        this.startDate,
+                        this.endDate
+                        );
+                    if(resultCreate){
+                        Router.push('/home') //refaire le call pour refresh la liste des projets dans home !
+                    }
+                    else{
+                        alert('Error, please verify your informations');
+                    }
+                }
+                else{
+                    alert('Error, please verify your informations');
+                }
+            },
+
             goback(){
                 Router.push('/home');
             }
