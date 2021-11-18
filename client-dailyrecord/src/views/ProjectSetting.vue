@@ -6,8 +6,8 @@
             <textarea v-model="project.description" name="description"></textarea>
 
             <div>
-                <input type="email" style="width:70%">
-                <button class="buttonBlue">Save</button>
+                <input v-model="mail" type="email" style="width:70%">
+                <button @click="addMail()" class="buttonBlue">Save</button>
             </div>
 
             <div class="listUser">
@@ -66,8 +66,7 @@
         import Router from '../router/index';
         import ButtonGoback from '../components/ButtonGoback.vue';
         import UserComponent from '../components/UserComponent.vue';
-
-        //import ProjectService from '../services/projectService'; //add the service
+        import ProjectService from '../services/projectService'; //add the service
     //#endregion
 
     export default{
@@ -78,13 +77,14 @@
         },
         data(){
             return {
+                mail:"thomas.bernard@diiage.org",
                 project : {
                     name:"Boss simulator",
                     description: "Description of boss Simulator",
                     users: [
                         {
                             name:"thomas",
-                            mail:"thomas.bernard@diiage.org"
+                            mail:"thomas.a@diiage.org"
                         },
                         {
                             name:"justin",
@@ -99,9 +99,15 @@
                 }
             };
         },
+        mounted(){
+            this.ProjectService = new ProjectService();
+        },
         methods:{
             goback(){
-                Router.push('/project/1');
+                Router.push('/project/'+this.$route.params.id);
+            },
+            addMail(){
+                this.ProjectService.addUserToProject(this.mail, this.$route.params.id);
             }
         }
     }

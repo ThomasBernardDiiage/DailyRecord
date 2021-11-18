@@ -23,6 +23,10 @@ export default class ProjectService{
         }
         return false;
     }
+    
+    async addUserToProject(mail, projectId){
+        await ApiService.sendPostWithToken('project/' + projectId + '/member');
+    }
 
     
 }

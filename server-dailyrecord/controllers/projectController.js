@@ -39,7 +39,9 @@ class ProjectController {
     }
 
     async addMemberProject(request, response){
-        
+        const userAdded = await ProjectService.assignUserToProject(request.body.userId, request.params.id);
+
+        response.status(200).send(userAdded);
     }
 }
 

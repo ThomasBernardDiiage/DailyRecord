@@ -85,7 +85,7 @@ export default {
                 Router.push('/home');
             },
             projectSetting(){
-                Router.push('/project/1/setting');
+                Router.push('/project/'+ this.$route.params.id + '/setting');
             }
         }
 }
