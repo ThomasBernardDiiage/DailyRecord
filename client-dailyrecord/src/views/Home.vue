@@ -61,8 +61,6 @@
         import ButtonProfile from '../components/ButtonProfile.vue';
         import Router from '../router/index';
         import ProjectService from '../services/projectService'; //add the service
-
-
     //#endregion
 
 
