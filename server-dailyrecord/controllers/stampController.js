@@ -31,6 +31,22 @@ class StampController{
             response.status(418).send();
         }
     }
+
+    async setStamp(request, response){ // Set the stamp that correspond to the id parameter
+        const id = request.body.id;
+        const location = request.body.location;
+        const name = request.body.name;
+
+        const stampUpdated = await StampService.setStamp(id, location, name);
+
+        if(stampUpdated){
+            response.status(200).send();
+        }
+
+        else{
+            response.status(418).send();
+        }
+    }
 }
 
 module.exports = new StampController

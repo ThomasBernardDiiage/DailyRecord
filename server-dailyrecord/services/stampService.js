@@ -32,6 +32,24 @@ class StampService{
             return false;
         }
     }
+
+    async setStamp(id, location, name){ // Set the stamp that correspond to the id parameter
+        try{
+            const result = await StampModel.update({
+                id: id,
+                location: location,
+                name: name
+            },{
+                where: {
+                    id: id
+                }
+            });
+
+            return true;
+        } catch{
+            return false;
+        }
+    }
 }
 
 module.exports = new StampService();

@@ -3,19 +3,19 @@ const MeetingService = require('../services/meetingService');
 const { response } = require('../app');
 
 class MeetingController{
-    async getMeetings(request, response){ // Get all the stamps for the parameter meeting
+    async getMeetings(request, response){ // Get all the meetings for the parameter project
         const meetings = await MeetingService.getMeetings(request.params.projectId);
 
         response.status(200).send(meetings);
     }
 
-    async getMeeting(request, response){ // Get the stamp related of the parameter id
+    async getMeeting(request, response){ // Get the meeting related of the parameter id
         const meeting = await MeetingService.getMeeting(request.params.meetingId);
         
         response.status(200).send(meeting);
     }
 
-    async createMeeting(request, response){ // Add one stamp with the parameters informations
+    async createMeeting(request, response){ // Add one meeting with the parameters informations
         const id = request.body.id;
         const duration = request.body.duration;
         const description = request.body.description;
@@ -26,6 +26,24 @@ class MeetingController{
         const meetingCreated = await MeetingService.createMeeting(id, duration, description, file, date, projectId);
 
         if(meetingCreated){
+            response.status(200).send();
+        }
+
+        else{
+            response.status(418).send();
+        }
+    }
+
+    async setMeeting(request, response){ // Set the meeting that correspond to the id parameter
+        const id = request.body.id;
+        const duration = request.body.duration;
+        const description = request.body.description;
+        const file = request.body.file;
+        const date = request.body.date;
+
+        const meetingUpdated = await MeetingService.setMeeting(id, duration, description, file, date);
+
+        if(meetingUpdated){
             response.status(200).send();
         }
 
