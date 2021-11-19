@@ -101,10 +101,11 @@
         },
         mounted(){
             this.ProjectService = new ProjectService();
+            this.project = ProjectService.getProject(this.$route.params.id);
         },
         methods:{
             goback(){
-                Router.push('/project/'+this.$route.params.id);
+                Router.push('/project/' + this.$route.params.id);
             },
             addMail(){
                 this.ProjectService.addUserToProject(this.mail, this.$route.params.id);

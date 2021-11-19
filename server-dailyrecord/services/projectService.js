@@ -77,11 +77,11 @@ class ProjectService{
     async assignUserToProject(userId,projectId){
 
         //assign a user to a specific project
+        if(await UserProjectModel.findOne({where:{userId,projectId}})){
+            return false;
+        }
         try{
-            UserProjectModel.create({
-                userId,
-                projectId
-            });
+            UserProjectModel.create({userId,projectId});
             return true;
         }
         catch{
