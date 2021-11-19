@@ -7,7 +7,6 @@ const cors = require('cors'); // import cors
 const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const projectRouter = require('./routes/project');
-const stampRouter = require('./routes/stamp');
 const dataBaseConnection = require('./models/dataBaseConnection');
 
 
@@ -23,7 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/project', projectRouter);
-app.use('/timestamp', stampRouter);
 
 
 
