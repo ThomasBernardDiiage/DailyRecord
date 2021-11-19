@@ -5,6 +5,7 @@
             <label for="description">Description :</label>
             <textarea v-model="project.description" name="description"></textarea>
 
+            <h5 class="messageMail">{{this.messageMail}}</h5>
             <div>
                 <input v-model="mail" type="email" style="width:70%">
                 <button @click="addMail()" class="buttonBlue">Save</button>
@@ -22,6 +23,12 @@
 
 <style>
     @import '../assets/styles/main.css'; /* import the styles sheet */
+
+    section.container section.wrapper h5.messageMail{
+        margin: 0;
+        align-self: flex-start;
+        margin-top: 10px;
+    }
 
     section.container section.wrapper{
         min-width: 400px;
@@ -78,6 +85,7 @@
         data(){
             return {
                 mail:"thomas.bernard@diiage.org",
+                messageMail:"Enter an email adress :",
                 project : {
                     name:"Boss simulator",
                     description: "Description of boss Simulator",
@@ -107,8 +115,18 @@
             goback(){
                 Router.push('/project/' + this.$route.params.id);
             },
-            addMail(){
-                this.ProjectService.addUserToProject(this.mail, this.$route.params.id);
+            async addMail(){
+                const mailAdded = await this.ProjectService.addUserToProject(this.mail, this.$route.params.id);
+                const h5 = document.getElementsByClassName('messageMail');
+
+                if(mailAdded){
+                    this.messageMail = "User added to this project";
+                    h5[0].style.color = "green";
+                }
+                else {
+                    this.messageMail = "Error please verify infos";
+                    h5[0].style.color = "red";
+                }
             }
         }
     }

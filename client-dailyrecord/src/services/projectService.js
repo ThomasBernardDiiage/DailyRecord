@@ -26,7 +26,12 @@ export default class ProjectService{
     }
     
     async addUserToProject(mail, projectId){
-        await ApiService.sendPostWithToken('project/' + projectId + '/member', {mail}, true);
+        try{
+            const resultCall = await ApiService.sendPostWithToken('project/' + projectId + '/member', {mail}, true);
+            return resultCall
+        } catch {
+            return false;
+        }
     }
 
     
