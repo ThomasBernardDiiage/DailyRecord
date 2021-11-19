@@ -1,22 +1,26 @@
-const { createProject } = require('../controllers/projectController');
+const { query } = require('express');
+const Sequelize = require('sequelize');
 const projectController = require('../controllers/projectController');
 const ProjectModel = require('../models/projectModel');
 const UserModel = require('../models/userModel');
 const UserProjectModel = require('../models/userProjectModel');
 
+const sequelize=new Sequelize('DbDailyRecord','root','Azerty@123',{
+    host:'localhost',
+    dialect:'mysql'
+})
 
 class ProjectService{
 
     async getProjects(userId){
-        const projects = await ProjectModel.findAll(); // Must edit this query to return only projet for a user
-        return projects;
+        const projects = await sequelize.query("SELECT Projects.id, Projects.name, Projects.description FROM Projects INNER JOIN Works ON Projects.id = Works.projectId WHERE Works.userId = " + userId);
+        return projects[0];
     }
 
     async getProject(userId, projectId){
         // Get the project with this id
 
         // Check if the user have access to this project
-
 
         // return the project with all dailys
 

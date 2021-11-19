@@ -12,7 +12,7 @@
         align-items: center;
         justify-content: center;
         align-self: flex-start;
-        background-color: rgb(233, 31, 31);
+        background-color: rgb(212, 59, 59);
         padding: 7px 20px;
         border-radius: 3px;
         cursor: pointer;
@@ -24,6 +24,8 @@
 
     .buttonLogout h5{
         margin: 0;
+        color: black !important;
+
     }
 
     .buttonLogout img{
