@@ -20,6 +20,26 @@ class ProjectService{
 
         // return the project with all dailys
 
+        const project = {
+            name:"Boss simulator",
+            dailyMeetings:[{
+                    id:1,
+                    name:"English daily",
+                    timestamp: "4"
+                },
+                {
+                    id:2,
+                    name:"Espagnol daily",
+                    timestamp: "9"
+                },
+                {
+                    id:3,
+                    name:"Italian daily",
+                    timestamp: "9"
+                }
+            ]
+        }
+
         return project;
     }
 
@@ -57,11 +77,11 @@ class ProjectService{
     async assignUserToProject(userId,projectId){
 
         //assign a user to a specific project
+        if(await UserProjectModel.findOne({where:{userId,projectId}})){
+            return false;
+        }
         try{
-            UserProjectModel.create({
-                userId,
-                projectId
-            });
+            UserProjectModel.create({userId,projectId});
             return true;
         }
         catch{

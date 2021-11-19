@@ -62,6 +62,7 @@
         import ButtonGoback from '../components/ButtonGoback.vue';
         import DailyComponent from '../components/DailyComponent.vue';
         import Router from '../router';
+        import ProjectService from '../services/projectService'; //add the service
     //#endregion
 
 export default {
@@ -75,28 +76,16 @@ export default {
             project : undefined,
         };
     },
-    mounted(){
-        this.project = {
-            name:"Boss simulator",
-            dailyMeetings:[{
-                    id:1,
-                    name:"English daily",
-                    timestamp: "4"
-                },
-                {
-                    id:2,
-                    name:"Espagnol daily",
-                    timestamp: "9"
-                }
-            ]
-        }
+    async mounted(){
+        this.ProjectService = new ProjectService();
+        this.project = await this.ProjectService.getProject(this.$route.params.projectId);
     },
     methods:{
             goback(){
                 Router.push('/home');
             },
             projectSetting(){
-                Router.push('/project/1/setting');
+                Router.push('/project/'+ this.$route.params.id + '/setting');
             }
         }
 }

@@ -1,5 +1,6 @@
 const TokenService = require('../services/tokenService');
 const ProjectService = require('../services/projectService');
+const UserService = require('../services/userService')
 
 class ProjectController {
 
@@ -39,7 +40,21 @@ class ProjectController {
     }
 
     async addMemberProject(request, response){
+        const projectId = request.params.id; // Get the id of the project
+        const user = await UserService.getUserWithMail(request.body.mail);
         
+        if(user){
+            const userAdded = await ProjectService.assignUserToProject(user.id, projectId);
+            if(userAdded){
+                response.status(200).send(userAdded);
+            }
+            else{
+                response.status(403).send("User already on this project");
+            }
+        }
+        else{
+            response.status(404).send("User not found");
+        }
     }
 }
 
