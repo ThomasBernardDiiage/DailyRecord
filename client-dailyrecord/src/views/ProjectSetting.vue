@@ -92,20 +92,20 @@
         },
         async mounted(){
             this.ProjectService = new ProjectService();
-            this.project = await this.ProjectService.getProject(this.$route.params.id);
+            this.project = await this.ProjectService.getProject(this.$route.params.projectId);
             console.log(this.project);
         },
         methods:{
             goback(){
-                Router.push('/project/' + this.$route.params.id);
+                Router.push('/project/' + this.$route.params.projectId);
             },
             async addMail(){
-                const mailAdded = await this.ProjectService.addUserToProject(this.mail, this.$route.params.id);
+                const mailAdded = await this.ProjectService.addUserToProject(this.mail, this.$route.params.projectId);
                 const h5 = document.getElementsByClassName('messageMail');
 
                 if(mailAdded){
                     this.messageMail = "User added to this project";
-                    this.project = await this.ProjectService.getProject(this.$route.params.id);
+                    this.project = await this.ProjectService.getProject(this.$route.params.projectId);
                     this.mail = "";
                     h5[0].style.color = "green";
                 }

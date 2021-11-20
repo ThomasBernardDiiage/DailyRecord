@@ -3,7 +3,7 @@
         <section class="wrapper">
             <h1>{{this.project.name}}</h1>
             <section class="listDaily">
-                <img src="../assets/images/add.png" alt="add">
+                <img src="../assets/images/add.png" alt="add" @click="meetingCreation()">
                 <DailyComponent v-for="dailyMeeting in this.project.dailyMeetings" v-bind:key="dailyMeeting.id" v-bind:dailyMeeting="dailyMeeting"></DailyComponent>
             </section>
             <div>
@@ -78,14 +78,17 @@ export default {
     },
     async mounted(){
         this.ProjectService = new ProjectService();
-        this.project = await this.ProjectService.getProject(this.$route.params.id);
+        this.project = await this.ProjectService.getProject(this.$route.params.projectId);
     },
     methods:{
             goback(){
                 Router.push('/home');
             },
             projectSetting(){
-                Router.push('/project/'+ this.$route.params.id + '/setting');
+                Router.push('/project/'+ this.$route.params.projectId + '/setting');
+            },
+            meetingCreation(){
+                Router.push('/project/' + this.$route.params.projectId + '/meetingCreation');
             }
         }
 }
