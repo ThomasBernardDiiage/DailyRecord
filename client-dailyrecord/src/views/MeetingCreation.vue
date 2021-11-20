@@ -72,8 +72,13 @@
             },
             async createMeeting(){
                 const meetingCreated = await this.MeetingService.createMeeting(100, this.name, '/', this.date, this.$route.params.projectId);
-                console.log(meetingCreated);
-                this.goback();
+
+                if(meetingCreated){
+                    this.goback();
+                }
+                else{
+                    alert('error');
+                }
             }
         }
     }

@@ -1,8 +1,8 @@
 <template>
     <section class="itemDaily">
-        <h5>{{this.dailyMeeting.name}}</h5>
+        <h5>{{this.meeting.description}}</h5>
         <article>
-            <h5>{{this.dailyMeeting.timestamp}}</h5>
+            <h5>{{this.meeting.timestamp}}</h5>
             <img src="../assets/images/pin.png" alt="">
         </article>
     </section>
@@ -44,7 +44,7 @@
     export default {
         name:'ProjectComponent',
         props:{
-            dailyMeeting:undefined
+            meeting:undefined
         }
     }
 </script>

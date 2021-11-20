@@ -4,7 +4,7 @@
             <h1>{{this.project.name}}</h1>
             <section class="listDaily">
                 <img src="../assets/images/add.png" alt="add" @click="meetingCreation()">
-                <DailyComponent v-for="dailyMeeting in this.project.dailyMeetings" v-bind:key="dailyMeeting.id" v-bind:dailyMeeting="dailyMeeting"></DailyComponent>
+                <DailyComponent v-for="meeting in this.project.meetings" v-bind:key="meeting.id" v-bind:meeting="meeting"></DailyComponent>
             </section>
             <div>
                 <ButtonGoback @click.native="goback()"></ButtonGoback>
