@@ -78,7 +78,7 @@ export default {
     },
     async mounted(){
         this.ProjectService = new ProjectService();
-        this.project = await this.ProjectService.getProject(this.$route.params.projectId);
+        this.project = await this.ProjectService.getProject(this.$route.params.id);
     },
     methods:{
             goback(){

@@ -23,26 +23,13 @@ class ProjectService{
         // Check if the user have access to this project
 
         // return the project with all dailys
+        let project = await sequelize.query("SELECT Projects.id, Projects.name, Projects.description FROM Projects WHERE Projects.id = " + projectId);
+        project = project[0][0];
+        const meetings = await sequelize.query("SELECT Meetings.id, Meetings.description, Meetings.duration FROM Meetings WHERE projectId = " + projectId);
+        const users = await sequelize.query("SELECT Users.id, Users.firstname, Users.lastname, Users.mail FROM Users INNER JOIN Works On Users.id = Works.userId WHERE Works.projectId = " + projectId);
 
-        const project = {
-            name:"Boss simulator",
-            dailyMeetings:[{
-                    id:1,
-                    name:"English daily",
-                    timestamp: "4"
-                },
-                {
-                    id:2,
-                    name:"Espagnol daily",
-                    timestamp: "9"
-                },
-                {
-                    id:3,
-                    name:"Italian daily",
-                    timestamp: "9"
-                }
-            ]
-        }
+        project.meetings = meetings[0];
+        project.users = users[0];
 
         return project;
     }

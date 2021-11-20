@@ -33,4 +33,11 @@ input:not([type="Submit"]){
 
 textarea{
     resize: none;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+span{
+    border: solid gray 1px;
+    border-radius: 3px;
+    margin: 7px 0;
 }

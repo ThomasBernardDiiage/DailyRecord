@@ -12,7 +12,6 @@ export default class ProjectService{
 
     async getProject(id){
         const resultCall = await ApiService.sendGetWithToken('project/' + id, true);
-        console.log(resultCall.data);
         return resultCall.data;
     }
 
