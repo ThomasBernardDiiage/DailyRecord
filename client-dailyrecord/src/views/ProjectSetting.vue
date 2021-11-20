@@ -93,7 +93,6 @@
         async mounted(){
             this.ProjectService = new ProjectService();
             this.project = await this.ProjectService.getProject(this.$route.params.projectId);
-            console.log(this.project);
         },
         methods:{
             goback(){

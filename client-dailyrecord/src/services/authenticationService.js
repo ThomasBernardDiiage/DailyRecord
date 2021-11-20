@@ -15,7 +15,6 @@ export default class AuthenticationService{
 
         if(callResult){
             localStorage.setItem('JsonWebToken',callResult.data);
-            console.log(callResult.data)
             return true;
         } 
         else {
