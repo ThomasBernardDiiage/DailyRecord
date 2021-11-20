@@ -4,8 +4,8 @@
 
             <h1>Daily meeting creation</h1>
 
-            <label for="startDate"> Start date:</label>
-            <input type="date" id="startDate" name="startDate">
+            <label for="dateDaily">Date:</label>
+            <input type="date" name="dateDaily">
 
             <label for="dailyName">Name :</label>
             <input type="text" placeholder="Enter the name of the meeting">
@@ -13,7 +13,7 @@
             <span></span>
 
             <h3>Record :</h3>
-            
+
             <span></span>
 
             <div>
