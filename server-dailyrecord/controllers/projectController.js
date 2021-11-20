@@ -16,15 +16,13 @@ class ProjectController {
 
     async getProject(request, response){
         const projectId = request.params.id; // Get the id of the project
-        // const userId = TokenService.getUserId(request.headers.authorization);
-        const userId = 1;
+        const userId = TokenService.getUserId(request.headers.authorization);
 
         const project = await ProjectService.getProject(userId, projectId);
         response.status(200).send(project);
     }
 
     async createProject(request, response){
-        
         const userId = TokenService.getUserId(request.headers.authorization);
         const name = request.body.name;
         const description = request.body.description;

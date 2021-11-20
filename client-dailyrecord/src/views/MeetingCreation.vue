@@ -5,10 +5,10 @@
             <h1>Daily meeting creation</h1>
 
             <label for="dateDaily">Date:</label>
-            <input type="date" name="dateDaily">
+            <input v-model="date" type="date" name="dateDaily">
 
             <label for="dailyName">Name :</label>
-            <input type="text" placeholder="Enter the name of the meeting">
+            <input v-model="name" type="text" placeholder="Enter the name of the meeting">
 
             <span></span>
 
@@ -18,7 +18,7 @@
 
             <div>
                 <ButtonGoback @click.native="goback()"></ButtonGoback>
-                <button class="buttonBlue">Save</button>
+                <button @click="createMeeting()" class="buttonBlue">Save</button>
             </div>
         </section>
     </section>
@@ -49,6 +49,7 @@
     //#region all imports
         import ButtonGoback from '../components/ButtonGoback.vue';
         import Router from '../router';
+        import MeetingService from '../services/meetingService';
     //#endregion
 
     export default {
@@ -57,11 +58,22 @@
             ButtonGoback
         },
         data(){
-            return {};
+            return {
+                date:'',
+                name:''
+            };
+        },
+        mounted(){
+            this.MeetingService = new MeetingService();
         },
         methods: {
             goback(){
                 Router.push('/project/' + this.$route.params.projectId);
+            },
+            async createMeeting(){
+                const meetingCreated = await this.MeetingService.createMeeting(100, this.name, '/', this.date, this.$route.params.projectId);
+                console.log(meetingCreated);
+                this.goback();
             }
         }
     }

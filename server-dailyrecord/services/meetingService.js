@@ -1,5 +1,12 @@
 // Dependencies
 const MeetingModel = require('../models/meetingModel');
+const Sequelize = require('sequelize');
+const { request } = require('express');
+
+const sequelize = new Sequelize('DbDailyRecord','root','Azerty@123',{
+    host:'localhost',
+    dialect:'mysql'
+})
 
 class MeetingService{
     async getMeetings(projectId){ // Get all the stamps for the parameter meeting
@@ -18,18 +25,20 @@ class MeetingService{
         return meeting;
     }
 
-    async createMeeting(id, duration, description, file, date, projectId){ // Add one stamp with the parameters informations
+    async createMeeting(duration, description, file, date, projectId){ // Add one stamp with the parameters informations
         try{
+
             const result = await MeetingModel.create({
-                id: id,
                 duration: duration,
                 description: description,
                 file: file,
                 date: date,
                 projectId: projectId
             });
+            console.log("==============");
+            console.log(result);
 
-            return true;
+            return result;
         } catch{
             return false;
         }

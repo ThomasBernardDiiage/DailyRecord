@@ -1,11 +1,9 @@
-const { query } = require('express');
 const Sequelize = require('sequelize');
-const projectController = require('../controllers/projectController');
 const ProjectModel = require('../models/projectModel');
 const UserModel = require('../models/userModel');
 const UserProjectModel = require('../models/userProjectModel');
 
-const sequelize=new Sequelize('DbDailyRecord','root','Azerty@123',{
+const sequelize = new Sequelize('DbDailyRecord','root','Azerty@123',{
     host:'localhost',
     dialect:'mysql'
 })

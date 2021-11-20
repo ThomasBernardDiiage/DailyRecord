@@ -54,8 +54,6 @@
         import ButtonGoback from '../components/ButtonGoback.vue';
         import Router from '../router';
         import ProjectService from '../services/projectService'; //add the service
-
-
     //#endregion
 
 
