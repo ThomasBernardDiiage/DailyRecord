@@ -38,6 +38,11 @@
         padding: 20px 20px;
         box-shadow: -2px 5px 15px 0px #000000;
     }
+
+    section.container section.wrapper div {
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
 
 <script>
