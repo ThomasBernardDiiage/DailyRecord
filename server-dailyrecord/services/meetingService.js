@@ -26,9 +26,10 @@ class MeetingService{
         return meeting;
     }
 
-    async createMeeting(duration, description, file, date, projectId){ // Add one meeting with the parameters informations
+    async createMeeting(duration, description, file, date, projectId, blob, nameFile){ // Add one meeting with the parameters informations
         try{
-            const result = await MeetingModel.create({duration, description, file, date, projectId});
+            const result = await uploadAudio(nameFile, blob);
+            result = await MeetingModel.create({duration, description, file, date, projectId});
 
             return result;
         } catch{
@@ -48,6 +49,23 @@ class MeetingService{
                     id: id
                 }
             });
+
+            return true;
+        } catch{
+            return false;
+        }
+    }
+
+    async uploadAudio(nameFile, blob){
+        try{
+            const audioObject = JSON.parse(blob);
+
+            const audio = new Thing({
+                ...audioObject,
+                audioUrl: `html://localhost/audio/${nameFile}.mp3` // 10.4.10.2
+            });
+
+            audio.save();
 
             return true;
         } catch{

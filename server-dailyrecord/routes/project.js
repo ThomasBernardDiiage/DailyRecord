@@ -3,6 +3,8 @@ var router = express.Router();
 const ProjectController = require('../controllers/projectController');
 const StampController = require('../controllers/stampController');
 const MeetingController = require('../controllers/meetingController');
+const { route } = require('.');
+const multer = require('../middleware/multer');
 
 // Project
 router.get('/', ProjectController.getProjects); // we call the getProjects route
