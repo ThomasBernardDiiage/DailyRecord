@@ -54,6 +54,23 @@ class MeetingService{
             return false;
         }
     }
+
+    async uploadMeeting(nameFile, blob){
+        try{
+            const audioObject = JSON.parse(blob);
+
+            const audio = new Thing({
+                ...audioObject,
+                audioUrl: `html://localhost/audio/${nameFile}.mp3` // 10.4.10.2
+            });
+
+            audio.save();
+            
+            return true;
+        } catch{
+            return false;
+        }
+    }
 }
 
 module.exports = new MeetingService();

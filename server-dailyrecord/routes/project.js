@@ -3,6 +3,8 @@ var router = express.Router();
 const ProjectController = require('../controllers/projectController');
 const StampController = require('../controllers/stampController');
 const MeetingController = require('../controllers/meetingController');
+const { route } = require('.');
+const multer = require('../upload/multer')
 
 // Project
 router.get('/', ProjectController.getProjects); // we call the getProjects route
@@ -15,6 +17,9 @@ router.get('/:id/meetings', MeetingController.getMeetings); // Call the getMeeti
 router.get('/:id/meeting/:meetingId', MeetingController.getMeeting); // Call the getMeeting route
 router.post('/:id/meeting/', MeetingController.createMeeting); // Call the createMeeting route
 // router.post('/:id/meeting/:meetingId', MeetingController.setMeeting); // Call the setMeeting route
+
+// Multer
+route.post('/:id/meeting/:meetingId', multer, MeetingController.uploadAudio); // Call the uploadAudio route
 
 // Stamp
 router.get('/:id/meeting/:meetingId/timestamps', StampController.getStamps); // Call the getStamps route
