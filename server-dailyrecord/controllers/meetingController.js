@@ -53,7 +53,7 @@ class MeetingController{
         }
     }
 
-    async uploadMeeting(request, response){ // Upload the meeting that is give in parameter
+    async uploadMeeting(request, response){ // Upload the meeting that is gifted in parameter
         const nameFile = request.body.nameFile;
         const blob = request.body.blob;
 
