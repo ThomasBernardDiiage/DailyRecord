@@ -4,7 +4,7 @@
             <h1>{{this.project.name}}</h1>
             <section class="listDaily">
                 <img src="../assets/images/add.png" alt="add" @click="meetingCreation()">
-                <DailyComponent v-for="meeting in this.project.meetings" v-bind:key="meeting.id" v-bind:meeting="meeting"></DailyComponent>
+                <DailyComponent @click.native="displayMeeting(meeting.id)" v-for="meeting in this.project.meetings" v-bind:key="meeting.id" v-bind:meeting="meeting"></DailyComponent>
             </section>
             <div>
                 <ButtonGoback @click.native="goback()"></ButtonGoback>
@@ -89,6 +89,9 @@ export default {
             },
             meetingCreation(){
                 Router.push('/project/' + this.$route.params.projectId + '/meetingCreation');
+            },
+            displayMeeting(meetingId){
+                Router.push('/project/' + this.$route.params.projectId + '/meeting/' + meetingId);
             }
         }
 }
