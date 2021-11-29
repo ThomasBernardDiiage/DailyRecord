@@ -55,7 +55,7 @@ class MeetingService{
         }
     }
 
-    async uploadMeeting(nameFile, blob){
+    async uploadAudio(nameFile, blob){
         try{
             const audioObject = JSON.parse(blob);
 
@@ -65,7 +65,7 @@ class MeetingService{
             });
 
             audio.save();
-            
+
             return true;
         } catch{
             return false;

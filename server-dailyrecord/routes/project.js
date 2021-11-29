@@ -4,7 +4,7 @@ const ProjectController = require('../controllers/projectController');
 const StampController = require('../controllers/stampController');
 const MeetingController = require('../controllers/meetingController');
 const { route } = require('.');
-const multer = require('../upload/multer')
+const multer = require('../middleware/multer');
 
 // Project
 router.get('/', ProjectController.getProjects); // we call the getProjects route
@@ -19,7 +19,7 @@ router.post('/:id/meeting/', MeetingController.createMeeting); // Call the creat
 // router.post('/:id/meeting/:meetingId', MeetingController.setMeeting); // Call the setMeeting route
 
 // Multer
-route.post('/:id/meeting/:meetingId', multer, MeetingController.uploadAudio); // Call the uploadAudio route
+router.post('/:id/meeting/:meetingId/', multer, MeetingController.uploadAudio); // Call the uploadAudio route
 
 // Stamp
 router.get('/:id/meeting/:meetingId/timestamps', StampController.getStamps); // Call the getStamps route

@@ -53,11 +53,11 @@ class MeetingController{
         }
     }
 
-    async uploadMeeting(request, response){ // Upload the meeting that is gifted in parameter
+    async uploadAudio(request, response){ // Upload the meeting that is gifted in parameter
         const nameFile = request.body.nameFile;
         const blob = request.body.blob;
 
-        const meetingUploaded = await MeetingService.uploadMeeting(nameFile, blob);
+        const meetingUploaded = await MeetingService.uploadAudio(nameFile, blob);
 
         if(meetingUploaded){
             response.status(200).send();
