@@ -15,7 +15,7 @@
             <h3>Record :</h3>
             <div>
                 <vue-record-audio mode="press"  @result="onResult" />
-                <audio controls v-bind:src="audioSrc"></audio>
+                <audio controls v-bind:src="audioSource"></audio>
             </div>
                 
             <span class="border"></span>
@@ -66,7 +66,8 @@
             return {
                 date:'',
                 name:'',
-                audioSrc : ''
+                audioSource : '',
+                audioBlob : undefined
             };
         },
         mounted(){
@@ -77,7 +78,7 @@
                 Router.push('/project/' + this.$route.params.projectId);
             },
             async createMeeting(){
-                const meetingCreated = await this.MeetingService.createMeeting(100, this.name, '/', this.date, this.$route.params.projectId);
+                const meetingCreated = await this.MeetingService.createMeeting(100, this.name, this.audioBlob, this.date, this.$route.params.projectId);
 
                 if(meetingCreated){
                     this.goback();
@@ -87,10 +88,13 @@
                 }
             },
             onResult (data) {
-                console.log('The blob data:', data);
+                this.audioBlob = data;
                 const blobUrl = window.URL.createObjectURL(data);
 
-                this.audioSrc = blobUrl;
+                console.log(blobUrl);
+
+                console.log('The blob data:', this.audioBlob);
+                this.audioSource = blobUrl;
             }
         }
     }
