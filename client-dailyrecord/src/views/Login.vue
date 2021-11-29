@@ -7,7 +7,7 @@
             <label for="inputPassword">Password :</label>
             <input v-model="password" name="inputPassword" type="password" placeholder="Enter your password">
             <input type="submit" value="Log In" class="buttonBlue">
-            <span></span>
+            <span class="border"></span>
             <a href=""><router-link to="/register">Don't have an account ? Create one</router-link></a>
         </form>
     </section>
