@@ -26,14 +26,12 @@ class MeetingController{
 
         const meetingCreated = await MeetingService.createMeeting(duration, description, '', '01-02-03', projectId);
 
-        console.log(meetingCreated);
-
         if(meetingCreated){
             response.status(200).send();
         }
 
         else{
-            response.status(200).send(); // Must edit this line
+            response.status(418).send();
         }
     }
 

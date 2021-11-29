@@ -27,15 +27,11 @@ class MeetingService{
     }
 
     async createMeeting(duration, description, file, date, projectId){ // Add one meeting with the parameters informations
-        console.log("==============");
-
         try{
-            MeetingModel.create({duration, description, file, date, projectId});
-            console.log(result);
+            const result = await MeetingModel.create({duration, description, file, date, projectId});
 
             return result;
         } catch{
-            console.log("x");
             return false;
         }
     }
