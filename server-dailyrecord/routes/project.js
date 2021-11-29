@@ -14,10 +14,12 @@ router.post('/:id/member', ProjectController.addMemberProject); // call addMembe
 router.get('/:id/meetings', MeetingController.getMeetings); // Call the getMeetings route
 router.get('/:id/meeting/:meetingId', MeetingController.getMeeting); // Call the getMeeting route
 router.post('/:id/meeting/', MeetingController.createMeeting); // Call the createMeeting route
+router.post('/:id/meeting/:meetingId', MeetingController.setMeeting); // Call the setMeeting route
 
 // Stamp
 router.get('/:id/meeting/:meetingId/timestamps', StampController.getStamps); // Call the getStamps route
 router.get('/:id/meeting/:meetingId/timestamp/:stampId', StampController.getStamp); // Call the getStamp route
 router.post('/:id/meeting/:meetingId/timestamp/', StampController.createStamp); // Call the createStamp route
+router.post('/:id/meeting/:meetingId/timestamp/:stampId', StampController.setStamp); // Call the setStamp route
 
 module.exports = router;
