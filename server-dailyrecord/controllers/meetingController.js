@@ -1,6 +1,7 @@
 // Dependencies
 const MeetingService = require('../services/meetingService');
 const { response } = require('../app');
+const { createProject } = require('../services/projectService');
 
 class MeetingController{
     async getMeetings(request, response){ // Get all the meetings for the parameter project
@@ -19,12 +20,13 @@ class MeetingController{
 
         const duration = request.body.duration;
         const description = request.body.name;
+        const blob = request.body.blob;
         const file = request.body.file;
+        const nameFile = request.body.nameFile;
         const date = request.body.date;
         const projectId = request.params.id; // Get the id of the project
 
-
-        const meetingCreated = await MeetingService.createMeeting(duration, description, '', '01-02-03', projectId);
+        const meetingCreated = await MeetingService.createMeeting(duration, description, '', '01-02-03', projectId, blob, nameFile);
 
         if(meetingCreated){
             response.status(200).send();
@@ -45,21 +47,6 @@ class MeetingController{
         const meetingUpdated = await MeetingService.setMeeting(id, duration, description, file, date);
 
         if(meetingUpdated){
-            response.status(200).send();
-        }
-
-        else{
-            response.status(418).send();
-        }
-    }
-
-    async uploadAudio(request, response){ // Upload the meeting that is gifted in parameter
-        const nameFile = request.body.nameFile;
-        const blob = request.body.blob;
-
-        const meetingUploaded = await MeetingService.uploadAudio(nameFile, blob);
-
-        if(meetingUploaded){
             response.status(200).send();
         }
 

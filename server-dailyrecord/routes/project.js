@@ -18,9 +18,6 @@ router.get('/:id/meeting/:meetingId', MeetingController.getMeeting); // Call the
 router.post('/:id/meeting/', MeetingController.createMeeting); // Call the createMeeting route
 // router.post('/:id/meeting/:meetingId', MeetingController.setMeeting); // Call the setMeeting route
 
-// Multer
-router.post('/:id/meeting/:meetingId/', multer, MeetingController.uploadAudio); // Call the uploadAudio route
-
 // Stamp
 router.get('/:id/meeting/:meetingId/timestamps', StampController.getStamps); // Call the getStamps route
 router.get('/:id/meeting/:meetingId/timestamp/:stampId', StampController.getStamp); // Call the getStamp route
