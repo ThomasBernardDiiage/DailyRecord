@@ -10,11 +10,15 @@
             <label for="dailyName">Name :</label>
             <input v-model="name" type="text" placeholder="Enter the name of the meeting">
 
-            <span></span>
+            <span class="border"></span>
 
             <h3>Record :</h3>
-
-            <span></span>
+            <div>
+                <vue-record-audio mode="press"  @result="onResult" />
+                <audio controls v-bind:src="audioSrc"></audio>
+            </div>
+                
+            <span class="border"></span>
 
             <div>
                 <ButtonGoback @click.native="goback()"></ButtonGoback>
@@ -42,6 +46,7 @@
     section.container section.wrapper div {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 20px;
     }
 </style>
 
@@ -60,7 +65,8 @@
         data(){
             return {
                 date:'',
-                name:''
+                name:'',
+                audioSrc : ''
             };
         },
         mounted(){
@@ -79,6 +85,12 @@
                 else{
                     alert('error');
                 }
+            },
+            onResult (data) {
+                console.log('The blob data:', data);
+                const blobUrl = window.URL.createObjectURL(data);
+
+                this.audioSrc = blobUrl;
             }
         }
     }
