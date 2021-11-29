@@ -15,22 +15,25 @@ class MeetingController{
         response.status(200).send(meeting);
     }
 
-    async createMeeting(request, response){ // Add one meeting with the parameters informations
-        const id = request.body.id;
+    async createMeeting(request, response){ // Add one stamp with the parameters informations
+
         const duration = request.body.duration;
-        const description = request.body.description;
+        const description = request.body.name;
         const file = request.body.file;
         const date = request.body.date;
-        const projectId = request.body.projectId;
+        const projectId = request.params.id; // Get the id of the project
 
-        const meetingCreated = await MeetingService.createMeeting(id, duration, description, file, date, projectId);
+
+        const meetingCreated = await MeetingService.createMeeting(duration, description, '', '01-02-03', projectId);
+
+        console.log(meetingCreated);
 
         if(meetingCreated){
             response.status(200).send();
         }
 
         else{
-            response.status(418).send();
+            response.status(200).send(); // Must edit this line
         }
     }
 
