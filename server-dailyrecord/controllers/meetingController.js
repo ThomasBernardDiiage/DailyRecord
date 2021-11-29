@@ -54,10 +54,10 @@ class MeetingController{
     }
 
     async uploadMeeting(request, response){ // Upload the meeting that is give in parameter
-        const id = request.body.id;
-        const blob = request.body.file;
+        const nameFile = request.body.nameFile;
+        const blob = request.body.blob;
 
-        const meetingUploaded = await MeetingService.uploadMeeting(id, file);
+        const meetingUploaded = await MeetingService.uploadMeeting(nameFile, blob);
 
         if(meetingUploaded){
             response.status(200).send();
