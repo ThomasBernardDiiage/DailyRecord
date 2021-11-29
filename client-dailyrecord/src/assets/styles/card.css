@@ -12,12 +12,6 @@ form.card h1{
     font-size: 25pt;
 }
 
-form.card span{
-    border: solid gray 1px;
-    border-radius: 3px;
-    margin: 7px 0;
-}
-
 form.card a {
     text-decoration: none;
     color: rgb(61, 147, 236);

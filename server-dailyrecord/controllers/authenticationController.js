@@ -8,7 +8,7 @@ class AuthenticationController {
         const user = await AuthenticationService.login(request.body.email, request.body.password);
         // If the user exist
         if(user){
-            const payload = { sub: user.id } // Create the payload
+            const payload = { sub: user.id} // Create the payload
             const token = JsonWebToken.sign(payload, 'secret');
             response.status(200).send(token); // Return 200 + token
         }

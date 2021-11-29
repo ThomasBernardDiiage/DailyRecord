@@ -5,10 +5,12 @@
             <label for="description">Description :</label>
             <textarea v-model="project.description" name="description"></textarea>
 
-            <h5 class="messageMail">{{this.messageMail}}</h5>
+            <span style="margin-top:15px"></span>
+
+            <label style="margin-top:10px" class="messageMail">{{this.messageMail}}</label>
             <div>
-                <input v-model="mail" type="email" style="width:70%">
-                <button @click="addMail()" class="buttonBlue">Save</button>
+                <input v-model="mail" type="email" style="width:70%" placeholder="Enter an email adress">
+                <button @click="addMail()" class="buttonBlue">Add</button>
             </div>
 
             <div class="listUser">
@@ -21,7 +23,7 @@
 </template>
 
 
-<style>
+<style scoped>
     @import '../assets/styles/main.css'; /* import the styles sheet */
 
     section.container section.wrapper h5.messageMail{
@@ -54,7 +56,7 @@
     }
 
     section.wrapper div.listUser{
-        justify-content: start;
+        justify-content: start !important;
         height: 100px;
         background-color: white;
         border: 1px solid rgb(92, 92, 92);
@@ -84,43 +86,26 @@
         },
         data(){
             return {
-                mail:"thomas.bernard@diiage.org",
                 messageMail:"Enter an email adress :",
-                project : {
-                    name:"Boss simulator",
-                    description: "Description of boss Simulator",
-                    users: [
-                        {
-                            name:"thomas",
-                            mail:"thomas.a@diiage.org"
-                        },
-                        {
-                            name:"justin",
-                            mail:"justin.robin@diiage.org"
-                        }
-                        ,
-                        {
-                            name:"anthony",
-                            mail:"anthony.de@diiage.org"
-                        }
-                    ]
-                }
+                project : undefined
             };
         },
-        mounted(){
+        async mounted(){
             this.ProjectService = new ProjectService();
-            this.project = ProjectService.getProject(this.$route.params.id);
+            this.project = await this.ProjectService.getProject(this.$route.params.projectId);
         },
         methods:{
             goback(){
-                Router.push('/project/' + this.$route.params.id);
+                Router.push('/project/' + this.$route.params.projectId);
             },
             async addMail(){
-                const mailAdded = await this.ProjectService.addUserToProject(this.mail, this.$route.params.id);
+                const mailAdded = await this.ProjectService.addUserToProject(this.mail, this.$route.params.projectId);
                 const h5 = document.getElementsByClassName('messageMail');
 
                 if(mailAdded){
                     this.messageMail = "User added to this project";
+                    this.project = await this.ProjectService.getProject(this.$route.params.projectId);
+                    this.mail = "";
                     h5[0].style.color = "green";
                 }
                 else {
