@@ -17,7 +17,7 @@
                     <section class="list">
                         <CommentComponent v-for="comment in this.meeting.comments" v-bind:key="comment.id" v-bind:comment="comment"></CommentComponent>
                     </section>
-                    <button class="buttonBlue">Add comment</button>
+                    <button @click="createComment()" class="buttonBlue">Add comment</button>
                 </div>
             </section>
             <ButtonGoback @click.native="goback()"></ButtonGoback>
@@ -85,6 +85,7 @@
         import Router from '../router';
         import CommentComponent from '../components/CommentComponent.vue';
         import StampComponent from '../components/StampComponent.vue';
+        import CommentService from '../services/commentService';
     //#endregion
 
     export default {
@@ -96,6 +97,7 @@
         },
         data() {
             return {
+                commentService:undefined,
                 meeting : {
                     name: 'Last daily meeting',
                     audio: undefined,
@@ -134,9 +136,19 @@
                 }
             }
         },
+        mounted(){
+            this.commentService = new CommentService();
+        },
         methods: {
             goback(){
                 Router.push('/project/' + this.$route.params.projectId);
+            },
+            async createComment(){
+                const text = await prompt("Enter the text of the comment :");
+                console.log(text);
+                const projectId = this.$route.params.projectId;
+                const meetingId = this.$route.params.meetingId;
+                const result = await this.commentService.createComment();
             }
         }
     }
