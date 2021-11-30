@@ -3,6 +3,7 @@ var router = express.Router();
 const ProjectController = require('../controllers/projectController');
 const StampController = require('../controllers/stampController');
 const MeetingController = require('../controllers/meetingController');
+const CommentController = require('../controllers/commentController');
 const { route } = require('.');
 const multer = require('../middleware/multer');
 
@@ -23,5 +24,10 @@ router.get('/:id/meeting/:meetingId/timestamps', StampController.getStamps); // 
 router.get('/:id/meeting/:meetingId/timestamp/:stampId', StampController.getStamp); // Call the getStamp route
 router.post('/:id/meeting/:meetingId/timestamp/', StampController.createStamp); // Call the createStamp route
 // router.post('/:id/meeting/:meetingId/timestamp/:stampId', StampController.setStamp); // Call the setStamp route
+
+
+// Comments
+router.get('/:id/meeting/:meetingId/comment', CommentController.getComments); // get all comments of meeting
+router.post('/:id/meeting/:meetingId/comment', CommentController.createComment) // Create one comment
 
 module.exports = router;
