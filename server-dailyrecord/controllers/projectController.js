@@ -9,17 +9,28 @@ class ProjectController {
     async getProjects(request, response){
        
         const userId = TokenService.getUserId(request.headers.authorization); // Get the user id
-
         const projects = await ProjectService.getProjects(userId); // Call the method in project services
-        response.status(200).send(projects);
+
+        if(projects){
+            response.status(200).send(projects);
+        }
+        else{
+            response.status(404).send();
+        }
     }
 
     async getProject(request, response){
         const projectId = request.params.id; // Get the id of the project
         const userId = TokenService.getUserId(request.headers.authorization);
-
-        const project = await ProjectService.getProject(userId, projectId);
-        response.status(200).send(project);
+        
+        if(userId){
+            const project = await ProjectService.getProject(userId, projectId);
+            response.status(200).send(project);
+        }
+        else{
+            response.status(418).send();
+        }
+        
     }
 
     async createProject(request, response){
@@ -28,8 +39,9 @@ class ProjectController {
         const description = request.body.description;
         const startDate = request.body.startDate;
         const endDate = request.body.endDate;
-
+        
         const projectCreated = await ProjectService.createProject(userId,name,description,startDate,endDate);
+        
         if(projectCreated){
             response.status(200).send();
         }

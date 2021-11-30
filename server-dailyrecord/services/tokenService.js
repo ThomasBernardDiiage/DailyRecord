@@ -4,9 +4,14 @@ const jwt_decode = require('jwt-decode');
 class TokenService{
 
     getUserId(token){
-        const decodedToken = jwt_decode(token);
+        try{
+            const decodedToken = jwt_decode(token);
 
-        return decodedToken.sub;
+            return decodedToken.sub;
+        }
+        catch{
+            return false;
+        }
     }
 }
 
