@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize'); // import all packages
 const UserModel = require('./userModel');
+const MeetingModel = require('./meetingModel');
 
 
 
@@ -14,11 +15,19 @@ class CommentModel extends Model{
                 primaryKey:true,
                 autoIncrement:true
             },
+            meetingId: {
+                type:DataTypes.INTEGER,
+                allowNull:false,
+                references: {
+                    model: MeetingModel,
+                    key: 'id'
+                }
+            },
             text:{
                 type:DataTypes.STRING,
                 allowNull:false
             },
-            idCreator:{
+            userId:{
                 type:DataTypes.INTEGER,
                 allowNull:false,
                 references: {

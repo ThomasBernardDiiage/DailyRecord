@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const CommentModel = require('../models/commentModel');
 
 const sequelize = new Sequelize('DbDailyRecord','root','Azerty@123',{
     host:'localhost',
@@ -7,7 +8,9 @@ const sequelize = new Sequelize('DbDailyRecord','root','Azerty@123',{
 
 class CommentService {
     // create a comment for a meeting
-    async createComment(meetingId, idCreator, text, creationDate){
+    async createComment(meetingId, userId, text){
+        return await CommentModel.create({meetingId, userId, text});
+
 
     }
 

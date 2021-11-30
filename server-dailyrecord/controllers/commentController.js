@@ -6,7 +6,23 @@ const CommentService = require('../services/commentService');
 
 class CommentController{
     async createComment(request, response){
+        try{
+            const meetingId = request.params.meetingId;
+            const userId = TokenService.getUserId(request.headers.authorization); // Get the user id
+            const text = request.body.text;
 
+            const commentCreated = await CommentService.createComment(meetingId, userId, text);
+
+            if(commentCreated){
+                response.status(200).send();
+            }
+            else {
+                response.status(404).send();
+            }
+        }
+        catch {
+            response.status(418).send();
+        }
     }
 
     async getComments(request, response){
