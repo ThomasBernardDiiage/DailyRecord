@@ -1,15 +1,19 @@
 <template>
     <section class="container">
         <section class="mainWrapper">
-            <h1>{{this.meeting.name}}</h1>
-            <audio controls src=""></audio>
+            <h1>{{this.meeting.description}}</h1>
+            <section>
+                <audio src="" controls></audio>
+                <input v-model="timeStamp" type="number" style="width:35px">
+                <button @click="createStamp()" class="buttonBlue">Add stamp</button>
+
+                </section>
             <section>
                 <div>
                     <h4>Time stamps</h4>
                     <section class="list">
                         <StampComponent v-for="stamp in this.meeting.stamps" v-bind:key="stamp.id" v-bind:stamp="stamp"></StampComponent>
                     </section>
-                    <button class="buttonBlue">Add stamp</button>
                 </div>
                 <span></span>
                 <div>
@@ -86,6 +90,8 @@
         import CommentComponent from '../components/CommentComponent.vue';
         import StampComponent from '../components/StampComponent.vue';
         import CommentService from '../services/commentService';
+        import MeetingService from '../services/meetingService';
+        import StampService from '../services/stampService';
     //#endregion
 
     export default {
@@ -98,46 +104,16 @@
         data() {
             return {
                 commentService:undefined,
-                meeting : {
-                    name: 'Last daily meeting',
-                    audio: undefined,
-                    creationDate: undefined,
-                    stamps : [
-                        {
-                            name: 'Interessant way',
-                            location: '12:32'
-                        },
-                        {
-                            name: 'test way',
-                            location: '2:12'
-                        },
-                        {
-                            name: 'test way',
-                            location: '2:12'
-                        }
-                    ],
-                    comments : [
-                        {
-                            username: 'Thomas Bernard',
-                            text: 'test test test'
-                        },
-                        {
-                            username: 'Baptiste Rameau',
-                            text: 'Jaime les vrais hommes, Jaime les vrais hommes, Jaime les vrais hommes,Jaime les vrais hommes'
-                        },
-                        {
-                            username: 'Thibaut Monin',
-                            text: 'test test test'
-                        },{
-                            username: 'Tristan Devoille',
-                            text: 'test test test'
-                        }
-                    ]
-                }
+                timeStamp:undefined,
+                meeting : undefined
             }
         },
-        mounted(){
+        async mounted(){
             this.commentService = new CommentService();
+            this.meetingService = new MeetingService();
+            this.stampService = new StampService();
+            this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
+            console.log(this.meeting);
         },
         methods: {
             goback(){
@@ -148,7 +124,34 @@
                 const projectId = this.$route.params.projectId;
                 const meetingId = this.$route.params.meetingId;
 
-                this.commentService.createComment(projectId, meetingId, text);
+                const commentAdded = await this.commentService.createComment(projectId, meetingId, text);
+
+                if(commentAdded){
+                    this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
+                }
+                else {
+                    alert("error can't add this comment");
+                }
+            },
+            async createStamp(){
+
+                const text = prompt("Enter the name of the time stamp");
+
+                if(this.timeStamp <= 0 || text == ""){
+                    alert("Error please verify your values");
+                    return;
+                }
+
+
+
+                const stampAdded = await this.stampService.createStamp(this.$route.params.projectId, this.$route.params.meetingId, this.timeStamp, text);
+
+                if(stampAdded){
+                    this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
+                }
+                else {
+                    alert("error to add timestamp");
+                } 
             }
         }
     }

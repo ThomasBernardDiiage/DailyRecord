@@ -1,6 +1,6 @@
 <template>
     <section class="commentRow">
-        <h5>{{this.comment.username}}</h5>
+        <h5>{{this.comment.firstname}} {{this.comment.lastname}}</h5>
         <p>{{this.comment.text}}</p>
     </section>
 </template>
@@ -18,6 +18,7 @@
         margin-bottom: 15px;
         width: 90% !important;
         align-self: flex-start;
+        cursor: pointer;
     }
 
     section.commentRow h5{

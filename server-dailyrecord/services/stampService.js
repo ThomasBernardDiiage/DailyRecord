@@ -18,10 +18,9 @@ class StampService{
         return stamp;
     }
 
-    async createStamp(id, location, name, meetingId){ // Add one stamp with the parameters informations
+    async createStamp(location, name, meetingId){ // Add one stamp with the parameters informations
         try{
             const result = await StampModel.create({
-                id: id,
                 location: location,
                 name: name,
                 meetingId: meetingId

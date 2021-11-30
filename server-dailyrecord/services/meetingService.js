@@ -1,5 +1,7 @@
 // Dependencies
 const MeetingModel = require('../models/meetingModel');
+const CommentService = require('./commentService');
+const StampService = require('./stampService');
 
 const Sequelize = require('sequelize');
 const { request } = require('express');
@@ -22,7 +24,13 @@ class MeetingService{
 
     async getMeeting(meetingId){ // Get the meeting related of the parameter id
         const meeting = await MeetingModel.findByPk(meetingId);
+        const comments = await CommentService.getComments(meetingId);
+        const stamps = await StampService.getStamps(meetingId);
 
+        meeting.dataValues.comments = comments; // add the tab comment in meeting
+        meeting.dataValues.stamps = stamps;
+
+        
         return meeting;
     }
 
