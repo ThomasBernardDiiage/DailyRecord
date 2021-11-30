@@ -1,5 +1,9 @@
+const Sequelize = require('sequelize');
 
-
+const sequelize = new Sequelize('DbDailyRecord','root','Azerty@123',{
+    host:'localhost',
+    dialect:'mysql'
+})
 
 class CommentService {
     // create a comment for a meeting
@@ -9,7 +13,7 @@ class CommentService {
 
     // Get all comments of a meeting
     async getComments(meetingId){
-
+        return await sequelize.query(""); 
     }
 }
 

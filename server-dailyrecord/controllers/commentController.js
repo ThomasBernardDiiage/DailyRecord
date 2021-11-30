@@ -10,15 +10,20 @@ class CommentController{
     }
 
     async getComments(request, response){
-        const meetingId = request.params.meetingId;
-        const userId = TokenService.getUserId(request.headers.authorization); // Get the user id
+        try{
+            const meetingId = request.params.meetingId;
+            //const userId = TokenService.getUserId(request.headers.authorization); // Get the user id
 
-        const comments = CommentService.getComments(meetingId);
+            const comments = CommentService.getComments(meetingId);
 
         if(comments)
             response.status(200).send(comments);
         else 
             response.status(404).send();
+        }
+        catch {
+            response.status(418).send();
+        }
     }
 
 
