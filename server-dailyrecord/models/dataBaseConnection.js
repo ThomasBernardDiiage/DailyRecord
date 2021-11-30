@@ -4,6 +4,7 @@ const ProjectModel = require('./projectModel');
 const MeetingModel = require('./meetingModel');
 const StampModel = require('./stampModel');
 const UserProjectModel = require('./userProjectModel');
+const CommentModel = require('./commentModel');
 
 class DataBaseConnection {
   constructor() {
@@ -21,6 +22,7 @@ class DataBaseConnection {
       await MeetingModel.init(this.sequelize);
       await StampModel.init(this.sequelize);
       await UserProjectModel.init(this.sequelize);
+      await CommentModel.init(this.sequelize);
 
       // Gestion des associations
       UserModel.belongsToMany(ProjectModel, {

@@ -28,8 +28,8 @@ class MeetingService{
 
     async createMeeting(duration, description, file, date, projectId, blob, nameFile){ // Add one meeting with the parameters informations
         try{
-            const result = await uploadAudio(nameFile, blob);
-            result = await MeetingModel.create({duration, description, file, date, projectId});
+            //const result = await uploadAudio(nameFile, blob);
+            const result = await MeetingModel.create({duration, description, file, date, projectId});
 
             return result;
         } catch{
