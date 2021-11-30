@@ -145,10 +145,10 @@
             },
             async createComment(){
                 const text = await prompt("Enter the text of the comment :");
-                console.log(text);
                 const projectId = this.$route.params.projectId;
                 const meetingId = this.$route.params.meetingId;
-                const result = await this.commentService.createComment();
+
+                this.commentService.createComment(projectId, meetingId, text);
             }
         }
     }
