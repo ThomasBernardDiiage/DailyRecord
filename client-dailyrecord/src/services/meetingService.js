@@ -24,12 +24,17 @@ export default class MeetingService{
         //     body: formData
         // });
 
-        console.log("+++++++++++++++++++++++++");
         console.log(resultCall);
 
         
 
         return resultCall;
+    }
+
+
+    async getMeeting(projectId, meetingId){
+        const resultCall = await ApiService.sendGetWithToken('project/' + projectId + '/meeting/' + meetingId, true);
+        return resultCall.data;
     }
 
 }

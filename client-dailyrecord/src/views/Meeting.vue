@@ -1,7 +1,7 @@
 <template>
     <section class="container">
         <section class="mainWrapper">
-            <h1>{{this.meeting.name}}</h1>
+            <h1>{{this.meeting.description}}</h1>
             <audio controls src=""></audio>
             <section>
                 <div>
@@ -86,6 +86,7 @@
         import CommentComponent from '../components/CommentComponent.vue';
         import StampComponent from '../components/StampComponent.vue';
         import CommentService from '../services/commentService';
+        import MeetingService from '../services/meetingService';
     //#endregion
 
     export default {
@@ -136,8 +137,11 @@
                 }
             }
         },
-        mounted(){
+        async mounted(){
             this.commentService = new CommentService();
+            this.meetingService = new MeetingService();
+            this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
+            console.log(this.meeting);
         },
         methods: {
             goback(){
@@ -148,7 +152,14 @@
                 const projectId = this.$route.params.projectId;
                 const meetingId = this.$route.params.meetingId;
 
-                this.commentService.createComment(projectId, meetingId, text);
+                const commentAdded = await this.commentService.createComment(projectId, meetingId, text);
+
+                if(commentAdded){
+                    this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
+                }
+                else {
+                    alert("error can't add this comment");
+                }
             }
         }
     }

@@ -22,6 +22,10 @@ class MeetingService{
 
     async getMeeting(meetingId){ // Get the meeting related of the parameter id
         const meeting = await MeetingModel.findByPk(meetingId);
+        const comments = await sequelize.query("SELECT Comments.id, Comments.text, Users.id, Users.firstname, Users.lastname FROM Comments INNER JOIN Users ON Comments.userId = Users.id WHERE Comments.meetingId = " + meetingId);
+
+        meeting.dataValues.comments = comments[0];
+        console.log(meeting);
 
         return meeting;
     }
