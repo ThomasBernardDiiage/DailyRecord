@@ -20,8 +20,7 @@ router.post('/:id/meeting/', MeetingController.createMeeting); // Call the creat
 // router.post('/:id/meeting/:meetingId', MeetingController.setMeeting); // Call the setMeeting route
 
 // Stamp
-router.get('/:id/meeting/:meetingId/timestamps', StampController.getStamps); // Call the getStamps route
-router.get('/:id/meeting/:meetingId/timestamp/:stampId', StampController.getStamp); // Call the getStamp route
+router.get('/:id/meeting/:meetingId/timestamp', StampController.getStamps); // Call the getStamps route
 router.post('/:id/meeting/:meetingId/timestamp/', StampController.createStamp); // Call the createStamp route
 // router.post('/:id/meeting/:meetingId/timestamp/:stampId', StampController.setStamp); // Call the setStamp route
 

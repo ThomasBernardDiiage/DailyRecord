@@ -16,7 +16,9 @@ class CommentService {
 
     // Get all comments of a meeting
     async getComments(meetingId){
-        return await sequelize.query(""); 
+        const comments = await sequelize.query("SELECT Comments.id, Comments.text, Users.id, Users.firstname, Users.lastname FROM Comments INNER JOIN Users ON Comments.userId = Users.id WHERE Comments.meetingId = " + meetingId);
+
+        return comments[0];
     }
 }
 

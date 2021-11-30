@@ -16,6 +16,7 @@
         height: auto !important;
         padding: 3px, 20px;
         border-bottom: solid 1px gray;
+        cursor: pointer;
     }
     section.StampRow article {
         display: flex;

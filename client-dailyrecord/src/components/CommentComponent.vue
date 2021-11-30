@@ -18,6 +18,7 @@
         margin-bottom: 15px;
         width: 90% !important;
         align-self: flex-start;
+        cursor: pointer;
     }
 
     section.commentRow h5{
