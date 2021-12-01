@@ -4,7 +4,7 @@
             <div>
                 <ButtonLogout @click.native="logout()"></ButtonLogout>
                 <h1>All my projects</h1>
-                <ButtonProfile></ButtonProfile>
+                <ButtonProfile v-bind:user="user"></ButtonProfile>
             </div>
             
             <section class="listProjects">
@@ -73,13 +73,16 @@
         },
         data(){
             return {
-                projects : undefined
+                projects : undefined,
+                user:undefined
             };
         },
         async mounted(){
             this.AuthenticationService = new AuthenticationService();
             this.ProjectService = new ProjectService();
-            this.projects = await this.ProjectService.getProjects();
+            const result = await this.ProjectService.getProjects();
+            this.projects = result.projects;
+            this.user = result.user;
         },
         methods:{
             logout(){
