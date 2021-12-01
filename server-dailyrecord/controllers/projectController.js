@@ -62,6 +62,7 @@ class ProjectController {
             else{
                 response.status(403).send("User already on this project");
             }
+            
         }
         else{
             response.status(404).send("User not found");
