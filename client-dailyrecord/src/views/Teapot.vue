@@ -2,7 +2,7 @@
     <section class="container">
         <section class="wrapper">
             <div>
-                <h1>Error : You are a teapot ! You entered an invalid URL or tryed to access someone else project</h1>
+                <h1>Error : You are a teapot ! You entered an invalid URL or tried to access someone else's project</h1>
                 <img src="../assets/images/Teapot.png" alt="Teapot"/>
             </div>
         </section>
