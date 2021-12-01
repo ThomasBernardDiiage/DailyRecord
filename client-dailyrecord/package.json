@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@codekraft-studio/vue-record": "^0.0.3",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "multer": "^1.4.3",
