@@ -44,6 +44,14 @@ class DataBaseConnection {
       MeetingModel.hasMany(StampModel, {
         foreignKey: 'meetingId'
       }); // Un stamp appartient à un meeting
+
+      MeetingModel.hasMany(CommentModel, {
+        foreignKey: 'meetingId'
+      }); // Un comment appartient à un meeting
+
+      UserModel.hasMany(CommentModel, {
+        foreignKey: 'userId'
+      });
     });
   }
 }

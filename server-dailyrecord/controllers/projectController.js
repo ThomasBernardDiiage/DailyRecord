@@ -9,13 +9,13 @@ class ProjectController {
     async getProjects(request, response){
        
         const userId = TokenService.getUserId(request.headers.authorization); // Get the user id
-        const projects = await ProjectService.getProjects(userId); // Call the method in project services
+        const result = await ProjectService.getProjects(userId); // Call the method in project services
 
-        if(projects){
-            response.status(200).send(projects);
+        if(result){
+            response.status(200).send(result);
         }
         else{
-            response.status(404).send();
+            response.status(404).send("Don't have permission");
         }
     }
 

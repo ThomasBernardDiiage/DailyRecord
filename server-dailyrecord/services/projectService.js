@@ -11,8 +11,14 @@ const sequelize = new Sequelize('DbDailyRecord','root','Azerty@123',{
 class ProjectService{
 
     async getProjects(userId){
+        let result = {};
+
         const projects = await sequelize.query("SELECT Projects.id, Projects.name, Projects.description FROM Projects INNER JOIN Works ON Projects.id = Works.projectId WHERE Works.userId = " + userId);
-        return projects[0];
+        const user = await sequelize.query("SELECT Users.firstname, Users.lastname, Users.mail FROM Users WHERE Users.id = " + userId);
+        result.projects = projects[0];
+        result.user = user[0][0];
+
+        return result;
     }
 
     async getProject(userId, projectId){
