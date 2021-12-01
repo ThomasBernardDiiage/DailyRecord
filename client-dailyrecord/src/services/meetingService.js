@@ -23,9 +23,6 @@ export default class MeetingService{
         //     method: 'POST',
         //     body: formData
         // });
-
-        console.log(resultCall);
-
         
 
         return resultCall;
