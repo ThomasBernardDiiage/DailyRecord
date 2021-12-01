@@ -26,14 +26,13 @@ class MeetingController{
         const date = request.body.date;
         const projectId = request.params.id; // Get the id of the project
 
-        const meetingCreated = await MeetingService.createMeeting(duration, description, '', '01-02-03', projectId, blob, nameFile);
+        const meetingCreated = await MeetingService.createMeeting(duration, description, '', date, projectId, blob, nameFile);
 
         if(meetingCreated){
             response.status(200).send();
         }
-
         else{
-            response.status(418).send();
+            response.status(418).send("Can't create this meeting");
         }
     }
 

@@ -4,7 +4,7 @@
             <h1>{{this.meeting.description}}</h1>
             <section>
                 <audio src="" controls></audio>
-                <input v-model="timeStamp" type="number" style="width:35px">
+                <input v-model="timeStamp" type="time">
                 <button @click="createStamp()" class="buttonBlue">Add stamp</button>
 
                 </section>
@@ -113,7 +113,6 @@
             this.meetingService = new MeetingService();
             this.stampService = new StampService();
             this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
-            console.log(this.meeting);
         },
         methods: {
             goback(){
@@ -136,15 +135,26 @@
             async createStamp(){
 
                 const text = prompt("Enter the name of the time stamp");
+                
 
-                if(this.timeStamp <= 0 || text == ""){
+                try{
+                    const hourMin = this.timeStamp.split(":");
+                    var finalTime = parseInt(hourMin[0]*60, 10) + parseInt(hourMin[1], 10);
+
+                }
+                catch{
+                    alert("Please enter a correct time");
+                    return;
+                }
+
+                if(finalTime <= 0 || text == ""){
                     alert("Error please verify your values");
                     return;
                 }
 
 
 
-                const stampAdded = await this.stampService.createStamp(this.$route.params.projectId, this.$route.params.meetingId, this.timeStamp, text);
+                const stampAdded = await this.stampService.createStamp(this.$route.params.projectId, this.$route.params.meetingId, finalTime, text);
 
                 if(stampAdded){
                     this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
