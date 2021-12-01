@@ -1,7 +1,7 @@
 <template>
     <article class="buttonProfile">
         <img src="../assets/images/profile.png" alt="">
-        <h5>Thomas</h5>
+        <h5>{{user.firstname}}</h5>
     </article>
 </template>
 
@@ -31,6 +31,9 @@
 <script>
 
 export default{
-
+    name:'ButtonProfile',
+    props:{
+        user:undefined
+    }
 }
 </script>
