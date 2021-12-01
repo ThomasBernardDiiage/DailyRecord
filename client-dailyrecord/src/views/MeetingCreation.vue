@@ -4,9 +4,6 @@
 
             <h1>Daily meeting creation</h1>
 
-            <label for="dateDaily">Date:</label>
-            <input v-model="date" type="date" name="dateDaily">
-
             <label for="dailyName">Name :</label>
             <input v-model="name" type="text" placeholder="Enter the name of the meeting">
 
@@ -78,7 +75,7 @@
                 Router.push('/project/' + this.$route.params.projectId);
             },
             async createMeeting(){
-                const meetingCreated = await this.MeetingService.createMeeting(100, this.name, this.audioBlob, this.date, this.$route.params.projectId);
+                const meetingCreated = await this.MeetingService.createMeeting(100, this.name, this.audioBlob, Date.now(), this.$route.params.projectId);
 
                 if(meetingCreated){
                     this.goback();
