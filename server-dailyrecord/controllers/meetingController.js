@@ -8,14 +8,18 @@ const TokenService = require('../services/tokenService');
 
 class MeetingController{
     async getMeetings(request, response){ // Get all the meetings for the parameter project
+
         const meetings = await MeetingService.getMeetings(request.params.projectId);
 
         response.status(200).send(meetings);
     }
 
     async getMeeting(request, response){ // Get the meeting related of the parameter id
+        console.log("=====================");
+
         const meeting = await MeetingService.getMeeting(request.params.meetingId);
         
+        console.log(meeting);
         response.status(200).send(meeting);
     }
 

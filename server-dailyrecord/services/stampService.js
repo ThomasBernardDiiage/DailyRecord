@@ -26,7 +26,7 @@ class StampService{
                 meetingId: meetingId
             });
 
-            return true;
+            return result;
         } catch{
             return false;
         }

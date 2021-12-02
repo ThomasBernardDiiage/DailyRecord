@@ -1,6 +1,8 @@
 // Dependencies
 const TokenService = require('../services/tokenService');
 const CommentService = require('../services/commentService');
+const LogService = require('../services/logService');
+
 
 
 
@@ -14,6 +16,7 @@ class CommentController{
             const commentCreated = await CommentService.createComment(meetingId, userId, text); // Call the method in Comment Service
 
             if(commentCreated){ // If the comment is created
+                LogService.writeLog("User " + userId + " create the comment " + commentCreated.dataValues.id + " in the meeting " + meetingId);
                 response.status(200).send("Comment created"); // return status 200
             }
             else {
