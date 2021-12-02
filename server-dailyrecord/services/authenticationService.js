@@ -31,10 +31,12 @@ class AuthenticationService{
             const userExist = await UserModel.findOne({where:{mail}}); // We verify if the email adress already exist
 
             if(userExist){ // If the user already exist
+                LogService.writeLog("User try to register with already created mail");
                 return false;
             }
             else { // If it's a new user
                 const user = await UserModel.create({mail, password, firstname, lastname}); // We create this user
+                LogService.writeLog("Account " + user.id + " created succefuly");
                 return true; // We return true
             }
         }
