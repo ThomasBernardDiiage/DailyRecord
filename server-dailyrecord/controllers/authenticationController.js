@@ -7,26 +7,38 @@ class AuthenticationController {
     async login(request, response){
         const user = await AuthenticationService.login(request.body.email, request.body.password);
         // If the user exist
-        if(user){
-            const payload = { sub: user.id} // Create the payload
-            const token = JsonWebToken.sign(payload, 'secret');
-            response.status(200).send(token); // Return 200 + token
+
+        try {
+            if(user){
+                const payload = { sub: user.id} // Create the payload
+                const token = JsonWebToken.sign(payload, 'secret');
+                response.status(200).send(token); // Return 200 + token
+            }
+            else{
+                response.status(405).send("User not found"); // If the user is not in the database
+            }
         }
-        else{
-            response.status(406).send();
+        catch {
+            response.status(404).send("Server error"); // If the server crash
         }
+        
     }
 
     async register(request, response){
         const user = await AuthenticationService.register(request.body.email, request.body.password, request.body.firstname, request.body.lastname);
 
         // if a user is found
-        if(user){
-            
-            response.status(200).send();
-        }
-        else{
-            response.status(406).send();
+
+        try {
+            if(user){
+                response.status(200).send("Account created"); // If account is cerated
+            }
+            else{
+                response.status(405).send("Can't create this account"); // else 
+            }
+        } 
+        catch {
+            response.status(404).send("Server error"); // If server crash
         }
     }
 
