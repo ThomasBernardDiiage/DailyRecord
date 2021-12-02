@@ -20,13 +20,11 @@ class MeetingController{
 
         const duration = request.body.duration;
         const description = request.body.name;
-        const blob = request.body.blob;
-        const file = request.body.file;
-        const nameFile = request.body.nameFile;
+        const file = request.body.file; //REFERENCES PATH OF FILE
         const date = request.body.date;
         const projectId = request.params.id; // Get the id of the project
 
-        const meetingCreated = await MeetingService.createMeeting(duration, description, '', date, projectId, blob, nameFile);
+        const meetingCreated = await MeetingService.createMeeting(duration, description, file, date, projectId);
 
         if(meetingCreated){
             response.status(200).send();
