@@ -4,7 +4,7 @@ class LogService {
     static filePath = '../dailyrecord.log';
 
     constructor(){
-        FileStream.appendFile(LogService.filePath, '=========== DailyRecord Logs ===========', error => console.log(error));
+        FileStream.appendFile(LogService.filePath, '', error => console.log(error));
     }
 
 

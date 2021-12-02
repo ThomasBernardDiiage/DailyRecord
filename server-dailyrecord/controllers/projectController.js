@@ -1,6 +1,6 @@
 const TokenService = require('../services/tokenService');
 const ProjectService = require('../services/projectService');
-const UserService = require('../services/userService')
+const UserService = require('../services/userService');
 
 class ProjectController {
 
