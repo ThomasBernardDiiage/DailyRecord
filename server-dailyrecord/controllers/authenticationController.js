@@ -1,5 +1,6 @@
 const AuthenticationService = require('../services/authenticationService');
 const JsonWebToken = require('jsonwebtoken');
+const LogService = require('../services/logService');
 
 class AuthenticationController {
 
@@ -12,13 +13,17 @@ class AuthenticationController {
             if(user){
                 const payload = { sub: user.id} // Create the payload
                 const token = JsonWebToken.sign(payload, 'secret');
+
+                LogService.writeLog("User connected with the id : " + user.id);
                 response.status(200).send(token); // Return 200 + token
             }
             else{
+                LogService.writeLog("User try to connect with wrong mail address");
                 response.status(405).send("User not found"); // If the user is not in the database
             }
         }
         catch {
+            LogService.writeLog("Server error in connection");
             response.status(404).send("Server error"); // If the server crash
         }
         

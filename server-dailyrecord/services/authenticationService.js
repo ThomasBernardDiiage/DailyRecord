@@ -1,4 +1,6 @@
 const UserModel = require('../models/userModel');
+const LogService = require('../services/logService');
+
 
 class AuthenticationService{
 
@@ -10,6 +12,9 @@ class AuthenticationService{
             if(user){
                 if(await user.verifyPassword(password)){
                     return user; // if user exist and info ok return the user
+                }
+                else {
+                    LogService.writeLog("User " + user.id + " try to connect to this account with wrong password");
                 }
             }
         }
