@@ -40,6 +40,7 @@ class ProjectService{
             project.meetings = meetings[0];
             project.users = users[0];
 
+            LogService.writeLog("User " + userId + " get " + project.meetings.length + " meetings from project " + projectId);
 
 
             return project;

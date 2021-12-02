@@ -2,6 +2,9 @@
 const MeetingService = require('../services/meetingService');
 const { response } = require('../app');
 const { createProject } = require('../services/projectService');
+const LogService = require('../services/logService');
+const TokenService = require('../services/tokenService');
+
 
 class MeetingController{
     async getMeetings(request, response){ // Get all the meetings for the parameter project
@@ -25,8 +28,14 @@ class MeetingController{
         const nameFile = request.body.nameFile;
         const date = request.body.date;
         const projectId = request.params.id; // Get the id of the project
+        const userId = TokenService.getUserId(request.headers.authorization); // get the user id
+
 
         const meetingCreated = await MeetingService.createMeeting(duration, description, '', date, projectId, blob, nameFile);
+
+        console.log(meetingCreated);
+        LogService.writeLog("User " + userId + " create the meeting " + meetingCreated.dataValues.id + " in the project " + projectId);
+
 
         if(meetingCreated){
             response.status(200).send();
