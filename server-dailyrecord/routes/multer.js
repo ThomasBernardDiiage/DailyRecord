@@ -20,9 +20,10 @@ const upload = multer({storage:storage}).single('audio');
 router.post('/', upload, (req, res)=>{
     completeFilePath=appDirectory+"/recordings/"+fileName   //produce file path
     console.log('file named : ',fileName);                  //Logging...
-    console.log('expected file path:'+completeFilePath)             
+    console.log('expected file path:'+completeFilePath)
+    var OldFileName=fileName             
     fileName=String(Date.now()+'_'+(Math.floor(Math.random()*1000000))+'.ogg'); //Generate new name for next meeting upload
-    res.status(200).send(completeFilePath)                  //Sending file path back to client to have it sent to client. the client will then request an SQL row's creation using it.
+    res.status(200).send(OldFileName)                  //Sending file path back to client to have it sent to client. the client will then request an SQL row's creation using it.
 })
 
 
