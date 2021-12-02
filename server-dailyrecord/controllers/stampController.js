@@ -1,6 +1,9 @@
 // Dependencies
 const StampService = require('../services/stampService');
 const { response } = require('../app');
+const LogService = require('../services/logService');
+const TokenService = require('../services/tokenService');
+
 
 class StampController{
     async getStamps(request, response){ // Get all the stamps for the parameter meeting
@@ -24,12 +27,15 @@ class StampController{
         const location = request.body.location;
         const name = request.body.name;
         const meetingId = request.params.meetingId;
+        const userId = TokenService.getUserId(request.headers.authorization); // Get the user id
+
 
 
 
         const stampCreated = await StampService.createStamp(location, name, meetingId);
 
         if(stampCreated){
+            LogService.writeLog("User " + userId + " create the time stamp " + stampCreated.dataValues.id);
             response.status(200).send();
         }
 

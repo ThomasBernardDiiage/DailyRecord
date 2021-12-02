@@ -2,6 +2,7 @@
 const MeetingModel = require('../models/meetingModel');
 const CommentService = require('./commentService');
 const StampService = require('./stampService');
+const LogService = require('../services/logService');
 
 const Sequelize = require('sequelize');
 const { request } = require('express');
