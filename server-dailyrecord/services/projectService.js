@@ -78,6 +78,7 @@ class ProjectService{
         }
         catch{
             // Return bool
+            LogService.writeLog("User " + userId + " try to create a new project but database return an error");
             return false;
         }
     }
