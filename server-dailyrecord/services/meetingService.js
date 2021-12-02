@@ -34,7 +34,7 @@ class MeetingService{
         return meeting;
     }
 
-    async createMeeting(duration, description, file, date, projectId, blob, nameFile){ // Add one meeting with the parameters informations
+    async createMeeting(duration, description, file, date, projectId){ // Add one meeting with the parameters informations
         try{
             //const result = await uploadAudio(nameFile, blob);
             const result = await MeetingModel.create({duration, description, file, date, projectId});
@@ -70,7 +70,7 @@ class MeetingService{
 
             const audio = new Thing({
                 ...audioObject,
-                audioUrl: `html://localhost/audio/${nameFile}.mp3` // 10.4.10.2
+                audioUrl: `html://localhost/recordings/${nameFile}.mp3` // 10.4.10.2
             });
 
             audio.save();
