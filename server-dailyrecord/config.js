@@ -3,9 +3,9 @@
 class Config {
 
     //#region  database informations
-    static databaseIPAddress = 'localhost';
+    static databaseIPAddress = '192.168.10.2';
     static databaseName = 'DbDailyRecord';
-    static databaseUser = 'root';
+    static databaseUser = 'dailyrecord';
     static databasePassword = 'Azerty@123';
     static databaseDialect = 'mysql'
     //#endregion
