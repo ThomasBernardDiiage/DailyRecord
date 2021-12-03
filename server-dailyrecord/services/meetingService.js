@@ -3,13 +3,13 @@ const MeetingModel = require('../models/meetingModel');
 const CommentService = require('./commentService');
 const StampService = require('./stampService');
 const LogService = require('../services/logService');
-
+const Config = require('../config');
 const Sequelize = require('sequelize');
 const { request } = require('express');
 
-const sequelize = new Sequelize('DbDailyRecord','root','Azerty@123',{
-    host:'localhost',
-    dialect:'mysql'
+const sequelize = new Sequelize(Config.databaseName,Config.databaseUser,Config.databasePassword,{
+    host:Config.databaseIPAddress,
+    dialect:Config.databaseDialect
 })
 
 class MeetingService{

@@ -5,12 +5,13 @@ const MeetingModel = require('./meetingModel');
 const StampModel = require('./stampModel');
 const UserProjectModel = require('./userProjectModel');
 const CommentModel = require('./commentModel');
+const Config = require('../config');
 
 class DataBaseConnection {
   constructor() {
-    this.sequelize = new Sequelize('DbDailyRecord', 'root', 'Azerty@123',{
-      dialect:'mysql',
-      host: 'localhost'
+    this.sequelize = new Sequelize(Config.databaseName, Config.databaseUser, Config.databasePassword,{
+      dialect:Config.databaseDialect,
+      host: Config.databaseIPAddress
     });
   }
 
