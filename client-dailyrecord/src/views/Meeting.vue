@@ -105,7 +105,8 @@
             return {
                 commentService:undefined,
                 timeStamp:undefined,
-                meeting : undefined
+                meeting : undefined,
+                recording : undefined
             }
         },
         async mounted(){
@@ -113,6 +114,7 @@
             this.meetingService = new MeetingService();
             this.stampService = new StampService();
             this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
+            this.recording = await this.meetingService.getRecording(this.$route.params.meetingId);
         },
         methods: {
             goback(){

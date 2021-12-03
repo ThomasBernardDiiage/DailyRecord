@@ -61,10 +61,18 @@ export default class MeetingService{
         return resultCall;
     }
 
-
     async getMeeting(projectId, meetingId){
         const resultCall = await ApiService.sendGetWithToken('project/' + projectId + '/meeting/' + meetingId, true);
         return resultCall.data;
     }
 
+    async getRecording(meetingId){
+        var output=new Blob()
+        await fetch('http://localhost:3000/multer/getFile/'+meetingId,{
+            method: 'GET'
+        }).then(data=>
+            output=data.blob()
+        )
+        return output;
+    }
 }
