@@ -39,10 +39,10 @@
         name:'Register',
         data(){
             return {
-                email: 'thomas.bernard@diiage.org',
-                password: 'Azerty@123',
-                firstname: 'Thomas',
-                lastname: 'Bernard'
+                email: '',
+                password: '',
+                firstname: '',
+                lastname: ''
             }
         },
         mounted(){
