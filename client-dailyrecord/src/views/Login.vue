@@ -29,8 +29,8 @@
         name:'Login',
         data(){
             return {
-                email: 'thomas.bernard@diiage.org',
-                password: 'Azerty@123' // ne pas oubliez d'enlever le mdp une fois que la dev est fini
+                email: '',
+                password: ''
             }
         },
         mounted(){
