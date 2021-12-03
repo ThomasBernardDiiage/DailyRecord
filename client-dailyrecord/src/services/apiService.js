@@ -1,16 +1,15 @@
 //#region all imports
     import Axios from 'axios';
+    import Config from '../../config';
 //#endregion
 
 export default class ApiService{
-
-    static baseUrl = 'http://localhost:3000/';
 
     // return a json content or false
     static async sendGetWithToken(url, useToken){
         try{
             if(useToken){
-                return await Axios.get(this.baseUrl + url, {
+                return await Axios.get(Config.serverUrl + url, {
                     headers:{
                         Authorization: localStorage.getItem("JsonWebToken")
                     }
@@ -25,14 +24,14 @@ export default class ApiService{
     static async sendPostWithToken(url, body, useToken){
         try{
             if(useToken){
-                return await Axios.post(this.baseUrl + url, body, {
+                return await Axios.post(Config.serverUrl + url, body, {
                     headers:{
                         Authorization: localStorage.getItem("JsonWebToken")
                     }
                 })
             }
             else{
-                return await Axios.post(this.baseUrl + url, body);
+                return await Axios.post(Config.serverUrl + url, body);
             }
         }
         catch {
