@@ -3,11 +3,12 @@ const ProjectModel = require('../models/projectModel');
 const UserModel = require('../models/userModel');
 const UserProjectModel = require('../models/userProjectModel');
 const LogService = require('../services/logService');
+const Config = require('../config');
 
 
-const sequelize = new Sequelize('DbDailyRecord','root','Azerty@123',{
-    host:'localhost',
-    dialect:'mysql'
+const sequelize = new Sequelize(Config.databaseName, Config.databaseUser,Config.databasePassword,{
+    host:Config.databaseIPAddress,
+    dialect: Config.databaseDialect
 })
 
 class ProjectService{

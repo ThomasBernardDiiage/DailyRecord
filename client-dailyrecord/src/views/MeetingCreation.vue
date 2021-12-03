@@ -11,7 +11,8 @@
 
             <h3>Record :</h3>
             <div>
-                <vue-record-audio mode="press"  @result="onResult" />
+                <vue-record-audio mode="press" @result="onResult"></vue-record-audio>
+
                 <audio controls v-bind:src="audioSource"></audio>
             </div>
                 

@@ -1,6 +1,6 @@
 //#region all imports
-    //import { post } from '../../../server-dailyrecord/routes';
-import ApiService from '../services/apiService';
+    import ApiService from '../services/apiService';
+    import Config from '../../config';
 //#endregion
 
 export default class MeetingService{
@@ -17,7 +17,7 @@ export default class MeetingService{
         
         var filePath;
 
-        await fetch('http://localhost:3000/multer/',{
+        await fetch(Config.serverUrl + 'multer/',{
             method: 'POST',
             body:formData,
         })
