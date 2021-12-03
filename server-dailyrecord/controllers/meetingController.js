@@ -15,11 +15,9 @@ class MeetingController{
     }
 
     async getMeeting(request, response){ // Get the meeting related of the parameter id
-        console.log("=====================");
 
         const meeting = await MeetingService.getMeeting(request.params.meetingId);
         
-        console.log(meeting);
         response.status(200).send(meeting);
     }
 
