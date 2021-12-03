@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /dist
-server-dailyrecord/recordings/*
+server-dailyrecord/recordings/* 
 #docker-compose.yml
 
 # local env files
