@@ -67,12 +67,14 @@ export default class MeetingService{
     }
 
     async getRecording(meetingId){
-        var output=new Blob()
-        await fetch('http://localhost:3000/multer/getFile/'+meetingId,{
+        var output
+        await fetch(Config.serverUrl+'multer/getFile/'+meetingId,{
             method: 'GET'
         }).then(data=>
-            output=data.blob()
+            console.log(data)
         )
+        console.log(output)
+        
         return output;
     }
 }

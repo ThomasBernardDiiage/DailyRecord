@@ -3,7 +3,7 @@
         <section class="mainWrapper">
             <h1>{{this.meeting.description}}</h1>
             <section>
-                <audio src="" controls></audio>
+                <audio v-bind="src=this.recording" controls></audio>
                 <input v-model="timeStamp" type="time">
                 <button @click="createStamp()" class="buttonBlue">Add stamp</button>
 
