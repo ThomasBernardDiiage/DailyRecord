@@ -10,6 +10,7 @@ var appDirectory = path.dirname(__dirname)
 var fileName=String(Date.now()+'_'+(Math.floor(Math.random()*1000000))+'.ogg'); //generate first name for first meeting upload
 const storage = Multer.diskStorage({
     destination: (req,file,callback) => {
+        fs.mkdirSync('./recordings')
         callback(null,'recordings/')
     },
     filename: (req, file, callback) => {
