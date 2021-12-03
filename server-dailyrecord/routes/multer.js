@@ -31,15 +31,15 @@ router.post('/', upload, (req, res)=>{
     res.status(200).send(OldFileName)                  //Sending file path back to client to have it sent to client. the client will then request an SQL row's creation using it.
 })
 
-router.get('/getFile/:id', async (req,res) => {
+router.get('/getFile/:id', async function(req,res,next) {
     let meetingFile = await MeetingService.getMeeting(req.params.id)
-    let meetingFileName = meetingFile.file;
+    const meetingFileName = meetingFile.file;
     
-    let file = fs.readFileSync(__dirname+'/../recordings/'+meetingFileName)
+    var options = {
+        root: path.join(__dirname,'/../recordings/')
+    }
     
-
-
-    res.status(200).send(file)
+    res.status(200).sendFile(meetingFileName,options)
 })
 
 
