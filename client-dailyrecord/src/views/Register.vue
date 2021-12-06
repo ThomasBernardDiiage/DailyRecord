@@ -6,7 +6,7 @@
             <input v-model="email" name="inputMail" type="email" placeholder="Enter your email">
 
             <label for="inputPassword">Password :</label>
-            <input v-model="password" name="inputPassword" type="password" placeholder="Enter your password">
+            <input v-model="password" name="inputPassword" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Need to contain at least 1 number, 1 uppercase, 1 lowercase and at least 8 characters" placeholder="Enter your password">
 
             <label for="inputFirstName">First name :</label>
             <input v-model="firstname" name="inputFirstName" type="text" placeholder="Enter your first name">
