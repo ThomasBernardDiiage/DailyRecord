@@ -92,7 +92,6 @@
         import CommentService from '../services/commentService';
         import MeetingService from '../services/meetingService';
         import StampService from '../services/stampService';
-        import ApiService from '../services/apiService';
     //#endregion
 
     export default {
@@ -117,15 +116,8 @@
             this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
             this.recording = await this.meetingService.getRecording(this.$route.params.meetingId);
 
-            const fileResult = await ApiService.sendGetWithToken('multer/getFile/' + this.meeting.id, true);
-
-            this.file = fileResult.data;
-
-            console.log(this.file);
 
             this.file = 'http://localhost:3000/multer/getFile/' + this.meeting.id;
-            console.log(this.file);
-
         },
         methods: {
             goback(){
