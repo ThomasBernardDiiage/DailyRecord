@@ -3,7 +3,7 @@
         <section class="mainWrapper">
             <h1>{{this.meeting.description}}</h1>
             <section>
-                <audio v-bind:src="file" controls></audio>
+                <audio preload="auto" id="audio" v-bind:src="file" controls></audio>
                 <input v-model="timeStamp" type="time">
                 <button @click="createStamp()" class="buttonBlue">Add stamp</button>
 
@@ -12,7 +12,7 @@
                 <div>
                     <h4>Time stamps</h4>
                     <section class="list">
-                        <StampComponent v-for="stamp in this.meeting.stamps" v-bind:key="stamp.id" v-bind:stamp="stamp"></StampComponent>
+                        <StampComponent v-for="stamp in this.meeting.stamps" v-bind:key="stamp.id" v-bind:stamp="stamp" @click.native="jumpTo(stamp.location)"></StampComponent>
                     </section>
                 </div>
                 <span></span>
@@ -121,10 +121,8 @@
 
             this.file = fileResult.data;
 
-            console.log(this.file);
 
             this.file = 'http://localhost:3000/multer/getFile/' + this.meeting.id;
-            console.log(this.file);
 
         },
         methods: {
@@ -175,6 +173,10 @@
                 else {
                     alert("error to add timestamp");
                 } 
+            },
+            jumpTo(time){
+                var audioElement = document.getElementById("audio");
+                audioElement.currentTime =  time;
             }
         }
     }
