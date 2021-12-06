@@ -3,7 +3,7 @@
         <section class="mainWrapper">
             <h1>{{this.meeting.description}}</h1>
             <section>
-                <audio v-bind="src=this.recording" controls></audio>
+                <audio v-bind:src="file" controls></audio>
                 <input v-model="timeStamp" type="time">
                 <button @click="createStamp()" class="buttonBlue">Add stamp</button>
 
@@ -92,6 +92,7 @@
         import CommentService from '../services/commentService';
         import MeetingService from '../services/meetingService';
         import StampService from '../services/stampService';
+        import ApiService from '../services/apiService';
     //#endregion
 
     export default {
@@ -106,7 +107,7 @@
                 commentService:undefined,
                 timeStamp:undefined,
                 meeting : undefined,
-                recording : undefined
+                file :undefined
             }
         },
         async mounted(){
@@ -115,6 +116,16 @@
             this.stampService = new StampService();
             this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
             this.recording = await this.meetingService.getRecording(this.$route.params.meetingId);
+
+            const fileResult = await ApiService.sendGetWithToken('multer/getFile/' + this.meeting.id, true);
+
+            this.file = fileResult.data;
+
+            console.log(this.file);
+
+            this.file = 'http://localhost:3000/multer/getFile/' + this.meeting.id;
+            console.log(this.file);
+
         },
         methods: {
             goback(){
