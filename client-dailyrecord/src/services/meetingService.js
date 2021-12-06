@@ -70,10 +70,7 @@ export default class MeetingService{
         var output
         await fetch(Config.serverUrl+'multer/getFile/'+meetingId,{
             method: 'GET'
-        }).then(data=>
-            console.log(data)
-        )
-        console.log(output)
+        })
         
         return output;
     }
