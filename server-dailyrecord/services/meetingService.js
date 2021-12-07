@@ -35,10 +35,10 @@ class MeetingService{
         return meeting;
     }
 
-    async createMeeting(duration, description, file, date, projectId){ // Add one meeting with the parameters informations
+    async createMeeting(description, file, date, projectId){ // Add one meeting with the parameters informations
         try{
             //const result = await uploadAudio(nameFile, blob);
-            const result = await MeetingModel.create({duration, description, file, date, projectId});
+            const result = await MeetingModel.create({description, file, date, projectId});
 
             return result;
         } catch{
@@ -46,10 +46,9 @@ class MeetingService{
         }
     }
 
-    async setMeeting(id, duration, description, file, date){ // Set the meeting that correspond to the id parameter
+    async setMeeting(id, description, file, date){ // Set the meeting that correspond to the id parameter
         try{
             const result = await MeetingModel.update({
-                duration: duration,
                 description: description,
                 file: file,
                 date: date

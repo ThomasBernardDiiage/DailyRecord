@@ -22,8 +22,6 @@ class MeetingController{
     }
 
     async createMeeting(request, response){ // Add one stamp with the parameters informations
-
-        const duration = request.body.duration;
         const description = request.body.name;
         const file = request.body.file; //REFERENCES PATH OF FILE
         const date = request.body.date;
@@ -31,7 +29,7 @@ class MeetingController{
         const userId = TokenService.getUserId(request.headers.authorization); // get the user id
 
 
-        const meetingCreated = await MeetingService.createMeeting(duration, description, file, date, projectId);
+        const meetingCreated = await MeetingService.createMeeting(description, file, date, projectId);
 
         console.log(meetingCreated);
         LogService.writeLog("User " + userId + " create the meeting " + meetingCreated.dataValues.id + " in the project " + projectId);
@@ -47,12 +45,11 @@ class MeetingController{
 
     async setMeeting(request, response){ // Set the meeting that correspond to the id parameter
         const id = request.body.id;
-        const duration = request.body.duration;
         const description = request.body.description;
         const file = request.body.file;
         const date = request.body.date;
 
-        const meetingUpdated = await MeetingService.setMeeting(id, duration, description, file, date);
+        const meetingUpdated = await MeetingService.setMeeting(id, description, file, date);
 
         if(meetingUpdated){
             response.status(200).send();
