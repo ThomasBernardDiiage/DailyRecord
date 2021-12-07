@@ -11,7 +11,8 @@
 
             <h3>Record :</h3>
             <div>
-                <vue-record-audio mode="press" @result="onResult"></vue-record-audio>
+                <button @click="startRecord()" class="buttonBlue" style="margin-right:5px" id="startButton">Start</button>
+                <button @click="stopRecord()" class="buttonBlue buttonBlueDisabled" id="stopButton">Stop</button>
 
                 <audio controls v-bind:src="audioSource"></audio>
             </div>
@@ -44,7 +45,12 @@
     section.container section.wrapper div {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         margin-bottom: 20px;
+    }
+
+    section.container section.wrapper button.startButton img {
+        height: 30px;
     }
 </style>
 
@@ -65,7 +71,9 @@
                 date:'',
                 name:'',
                 audioSource : '',
-                audioBlob : undefined
+                audioBlob : undefined,
+                mediaRecorder : undefined,
+                chunks : []
             };
         },
         mounted(){
@@ -76,7 +84,7 @@
                 Router.push('/project/' + this.$route.params.projectId);
             },
             async createMeeting(){
-                const meetingCreated = await this.MeetingService.createMeeting(100, this.name, this.audioBlob, Date.now(), this.$route.params.projectId);
+                const meetingCreated = await this.MeetingService.createMeeting(100, this.name, this.chunks[0], Date.now(), this.$route.params.projectId);
 
                 if(meetingCreated){
                     this.goback();
@@ -84,6 +92,33 @@
                 else{
                     alert('error');
                 }
+            },
+            startRecord() {
+                const buttonStart = document.getElementById('startButton');
+                buttonStart.classList.add('buttonBlueDisabled');
+                const buttonStop = document.getElementById('stopButton');
+                buttonStop.classList.remove('buttonBlueDisabled');
+
+                this.chunks = [];
+                this.mediaRecorder = undefined;
+                navigator.mediaDevices.getUserMedia({audio: true,}).then((stream) => {
+                    this.mediaRecorder = new MediaRecorder(stream);
+                    this.mediaRecorder.ondataavailable = (e) => { this.chunks.push(e.data);};
+                    this.mediaRecorder.onstop = () => {
+                        this.audioSource = window.URL.createObjectURL(this.chunks[0]);
+                        console.log(this.audioSource);
+                    };
+                    this.mediaRecorder.start();
+                 })
+                 .catch((err) => { alert(`The following error occurred: ${err}`);});
+                 
+            },
+            stopRecord(){
+                const buttonStop = document.getElementById('stopButton');
+                buttonStop.classList.add('buttonBlueDisabled');
+                const buttonStart = document.getElementById('startButton');
+                buttonStart.classList.remove('buttonBlueDisabled');
+                this.mediaRecorder.stop();
             },
             onResult (data) {
                 this.audioBlob = data;
