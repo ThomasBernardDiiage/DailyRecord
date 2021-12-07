@@ -5,7 +5,8 @@
 
 export default class MeetingService{
     
-    async createMeeting(duration, name, audioBlob, date, projectId){
+    async createMeeting(name, audioBlob, date, projectId){
+
         
         if(audioBlob===undefined)
         {   alert("Record something first!")
@@ -31,7 +32,6 @@ export default class MeetingService{
 
         if(filePath){
             var resultCall = await ApiService.sendPostWithToken('project/' + projectId + '/meeting', {
-                duration,
                 name,
                 file:filePath,
                 date,

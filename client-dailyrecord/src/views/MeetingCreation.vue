@@ -68,7 +68,6 @@
         },
         data(){
             return {
-                date:'',
                 name:'',
                 audioSource : '',
                 audioBlob : undefined,
@@ -84,7 +83,7 @@
                 Router.push('/project/' + this.$route.params.projectId);
             },
             async createMeeting(){
-                const meetingCreated = await this.MeetingService.createMeeting(100, this.name, this.chunks[0], Date.now(), this.$route.params.projectId);
+                const meetingCreated = await this.MeetingService.createMeeting(this.name, this.chunks[0], Date.now(), this.$route.params.projectId);
 
                 if(meetingCreated){
                     this.goback();

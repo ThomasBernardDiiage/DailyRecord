@@ -36,6 +36,8 @@ class MeetingController{
         const description = request.body.name;
         const file = request.body.file; //REFERENCES PATH OF FILE
         const date = request.body.date;
+        console.log("=============");
+        console.log(date);
         const projectId = request.params.id; // Get the id of the project
         const userId = TokenService.getUserId(request.headers.authorization); // get the user id
 
@@ -43,10 +45,10 @@ class MeetingController{
         const meetingCreated = await MeetingService.createMeeting(description, file, date, projectId);
 
         
-        LogService.writeLog("User " + userId + " create the meeting " + meetingCreated.dataValues.id + " in the project " + projectId);
 
 
         if(meetingCreated){
+            LogService.writeLog("User " + userId + " create the meeting " + meetingCreated.dataValues.id + " in the project " + projectId);
             response.status(200).send();
         }
         else{
