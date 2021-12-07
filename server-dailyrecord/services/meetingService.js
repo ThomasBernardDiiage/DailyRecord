@@ -13,26 +13,31 @@ const sequelize = new Sequelize(Config.databaseName,Config.databaseUser,Config.d
 })
 
 class MeetingService{
+    
     async getMeetings(projectId){ // Get all the meetings for the parameter project
         const meetings = await MeetingModel.findAll({
             where:{
-                projectId: projectId
+                projectId: projectId               
             }
         });
-
         return meetings;
     }
+       
 
     async getMeeting(meetingId){ // Get the meeting related of the parameter id
-        const meeting = await MeetingModel.findByPk(meetingId);
-        const comments = await CommentService.getComments(meetingId);
-        const stamps = await StampService.getStamps(meetingId);
+        try{
+            const meeting = await MeetingModel.findByPk(meetingId);
+            const comments = await CommentService.getComments(meetingId);
+            const stamps = await StampService.getStamps(meetingId);
 
-        meeting.dataValues.comments = comments; // add the tab comment in meeting
-        meeting.dataValues.stamps = stamps;
+            meeting.dataValues.comments = comments; // add the tab comment in meeting
+            meeting.dataValues.stamps = stamps;
 
-        
-        return meeting;
+            return meeting;
+        }
+        catch{
+            return false;
+        }
     }
 
     async createMeeting(description, file, date, projectId){ // Add one meeting with the parameters informations

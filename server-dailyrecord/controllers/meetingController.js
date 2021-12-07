@@ -8,17 +8,28 @@ const TokenService = require('../services/tokenService');
 
 class MeetingController{
     async getMeetings(request, response){ // Get all the meetings for the parameter project
-
+        
         const meetings = await MeetingService.getMeetings(request.params.projectId);
-
-        response.status(200).send(meetings);
+        
+        if(meetings){
+            response.status(200).send(meetings);
+        }
+        else{
+            response.status(418).send();
+        }
     }
 
     async getMeeting(request, response){ // Get the meeting related of the parameter id
 
         const meeting = await MeetingService.getMeeting(request.params.meetingId);
-        
-        response.status(200).send(meeting);
+        const userId = TokenService.getUserId(request.headers.authorization);
+
+        if(userId){
+            response.status(200).send(meeting);
+        }
+        else{
+            response.status(418).send();
+        }
     }
 
     async createMeeting(request, response){ // Add one stamp with the parameters informations
@@ -31,7 +42,7 @@ class MeetingController{
 
         const meetingCreated = await MeetingService.createMeeting(description, file, date, projectId);
 
-        console.log(meetingCreated);
+        
         LogService.writeLog("User " + userId + " create the meeting " + meetingCreated.dataValues.id + " in the project " + projectId);
 
 

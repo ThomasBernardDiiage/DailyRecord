@@ -114,15 +114,20 @@
             this.commentService = new CommentService();
             this.meetingService = new MeetingService();
             this.stampService = new StampService();
-            this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId);
+            this.meeting = await this.meetingService.getMeeting(this.$route.params.projectId, this.$route.params.meetingId)
+            if(!this.meeting){
+                this.$router.push({ path: "../Teapot"})
+            }
             this.recording = await this.meetingService.getRecording(this.$route.params.meetingId);
 
             const fileResult = await ApiService.sendGetWithToken('multer/getFile/' + this.meeting.id, true);
 
             this.file = fileResult.data;
 
+            
 
             this.file = 'http://localhost:3000/multer/getFile/' + this.meeting.id;
+            
 
         },
         methods: {

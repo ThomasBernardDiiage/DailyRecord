@@ -7,7 +7,6 @@ export default class MeetingService{
     
     async createMeeting(duration, name, audioBlob, date, projectId){
         
-        console.log('audio blob is:',audioBlob)
         if(audioBlob===undefined)
         {   alert("Record something first!")
             return false
@@ -29,10 +28,8 @@ export default class MeetingService{
                 alert(error)
         );
 
-        console.log('file path:',filePath)
 
         if(filePath){
-            console.log(filePath);
             var resultCall = await ApiService.sendPostWithToken('project/' + projectId + '/meeting', {
                 duration,
                 name,
@@ -70,7 +67,9 @@ export default class MeetingService{
         var output
         await fetch(Config.serverUrl+'multer/getFile/'+meetingId,{
             method: 'GET'
-        })
+        }).then(data=>
+            console.log(data)
+        )
         
         return output;
     }
