@@ -12,7 +12,7 @@
             <h3>Record :</h3>
             <div>
                 <button @click="startRecord()" class="buttonBlue" style="margin-right:5px" id="startButton">Start</button>
-                <button @click="stopRecord()" class="buttonBlue" id="stopButton">Stop</button>
+                <button @click="stopRecord()" class="buttonBlue buttonBlueDisabled" id="stopButton">Stop</button>
 
                 <audio controls v-bind:src="audioSource"></audio>
             </div>
@@ -94,6 +94,11 @@
                 }
             },
             startRecord() {
+                const buttonStart = document.getElementById('startButton');
+                buttonStart.classList.add('buttonBlueDisabled');
+                const buttonStop = document.getElementById('stopButton');
+                buttonStop.classList.remove('buttonBlueDisabled');
+
                 this.chunks = [];
                 this.mediaRecorder = undefined;
                 navigator.mediaDevices.getUserMedia({audio: true,}).then((stream) => {
@@ -109,6 +114,10 @@
                  
             },
             stopRecord(){
+                const buttonStop = document.getElementById('stopButton');
+                buttonStop.classList.add('buttonBlueDisabled');
+                const buttonStart = document.getElementById('startButton');
+                buttonStart.classList.remove('buttonBlueDisabled');
                 this.mediaRecorder.stop();
             },
             onResult (data) {

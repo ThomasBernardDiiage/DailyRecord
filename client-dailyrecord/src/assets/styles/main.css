@@ -23,6 +23,11 @@ section.container{
     background-color: rgb(40, 97, 158);
 }
 
+.buttonBlueDisabled{
+    background-color: rgb(40, 97, 158);
+    cursor:not-allowed;
+}
+
 label {
     align-self: start;
 }
