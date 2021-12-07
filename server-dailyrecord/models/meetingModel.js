@@ -13,10 +13,6 @@ class MeetingModel extends Model{
                 primaryKey:true,
                 autoIncrement:true
             },
-            duration:{
-                type:DataTypes.INTEGER,
-                allowNull:false
-            },
             description:{
                 type:DataTypes.STRING,
                 allowNull:true
