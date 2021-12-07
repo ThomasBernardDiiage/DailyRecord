@@ -24,22 +24,27 @@ const upload = multer({storage:storage}).single('audio');
 
 router.post('/', upload, (req, res)=>{
     completeFilePath=appDirectory+"/recordings/"+fileName   //produce file path
-    console.log('file named : ',fileName);                  //Logging...
-    console.log('expected file path:'+completeFilePath)
+    
     var OldFileName=fileName             
     fileName=String(Date.now()+'_'+(Math.floor(Math.random()*1000000))+'.ogg'); //Generate new name for next meeting upload
     res.status(200).send(OldFileName)                  //Sending file path back to client to have it sent to client. the client will then request an SQL row's creation using it.
 })
 
 router.get('/getFile/:id', async function(req,res,next) {
-    let meetingFile = await MeetingService.getMeeting(req.params.id)
-    const meetingFileName = meetingFile.file;
+    try{
+        let meetingFile = await MeetingService.getMeeting(req.params.id)
+        const meetingFileName = meetingFile.file;
     
-    var options = {
-        root: path.join(__dirname,'/../recordings/')
+        var options = {
+            root: path.join(__dirname,'/../recordings/')
     }
+
     
-    res.status(200).sendFile(meetingFileName,options)
+        res.status(200).sendFile(meetingFileName,options)
+    }
+    catch{
+        res.status(418).send();
+    }
 })
 
 

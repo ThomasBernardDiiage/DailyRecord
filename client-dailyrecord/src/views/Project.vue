@@ -79,6 +79,9 @@ export default {
     async mounted(){
         this.ProjectService = new ProjectService();
         this.project = await this.ProjectService.getProject(this.$route.params.projectId);
+        if(!this.project){
+            this.$router.push({ path: "../Teapot"})
+        }
     },
     methods:{
             goback(){

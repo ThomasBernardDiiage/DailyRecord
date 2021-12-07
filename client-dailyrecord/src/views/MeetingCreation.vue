@@ -89,9 +89,7 @@
                 this.audioBlob = data;
                 const blobUrl = window.URL.createObjectURL(data);
 
-                console.log(blobUrl);
 
-                console.log('The blob data:', this.audioBlob);
                 this.audioSource = blobUrl;
             }
         }
