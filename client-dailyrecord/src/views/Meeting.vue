@@ -120,7 +120,7 @@
             }
             this.recording = await this.meetingService.getRecording(this.$route.params.meetingId);
             
-            this.file = Config.serverUrl + 'multer/getFile/' + + this.meeting.id;
+            this.file = Config.serverUrl + 'multer/getFile/' + this.meeting.id;
             
 
         },
