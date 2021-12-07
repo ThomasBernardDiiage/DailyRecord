@@ -36,7 +36,7 @@ class ProjectService{
         try{
             let project = await sequelize.query("SELECT Projects.id, Projects.name, Projects.description FROM Projects WHERE Projects.id = " + projectId);
             project = project[0][0];
-            const meetings = await sequelize.query("SELECT Meetings.id, Meetings.description, Meetings.duration FROM Meetings WHERE projectId = " + projectId);
+            const meetings = await sequelize.query("SELECT Meetings.id, Meetings.description FROM Meetings WHERE projectId = " + projectId);
             const users = await sequelize.query("SELECT Users.id, Users.firstname, Users.lastname, Users.mail FROM Users INNER JOIN Works On Users.id = Works.userId WHERE Works.projectId = " + projectId);
             project.meetings = meetings[0];
             project.users = users[0];

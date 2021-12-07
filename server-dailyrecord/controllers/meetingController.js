@@ -43,10 +43,10 @@ class MeetingController{
         const meetingCreated = await MeetingService.createMeeting(description, file, date, projectId);
 
         
-        LogService.writeLog("User " + userId + " create the meeting " + meetingCreated.dataValues.id + " in the project " + projectId);
 
 
         if(meetingCreated){
+            LogService.writeLog("User " + userId + " create the meeting " + meetingCreated.dataValues.id + " in the project " + projectId);
             response.status(200).send();
         }
         else{
