@@ -92,7 +92,7 @@
         import CommentService from '../services/commentService';
         import MeetingService from '../services/meetingService';
         import StampService from '../services/stampService';
-        import ApiService from '../services/apiService';
+        import Config from '../../config';
     //#endregion
 
     export default {
@@ -119,14 +119,8 @@
                 this.$router.push({ path: "../Teapot"})
             }
             this.recording = await this.meetingService.getRecording(this.$route.params.meetingId);
-
-            const fileResult = await ApiService.sendGetWithToken('multer/getFile/' + this.meeting.id, true);
-
-            this.file = fileResult.data;
-
             
-
-            this.file = 'http://localhost:3000/multer/getFile/' + this.meeting.id;
+            this.file = Config.serverUrl + 'multer/getFile/' + + this.meeting.id;
             
 
         },
