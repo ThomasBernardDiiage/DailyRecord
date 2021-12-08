@@ -14,7 +14,6 @@ export default class MeetingService{
     async getSharedMeeting(sharedMeetingId){
         try {
             const result = await ApiService.sendGetWithToken('sharedMeeting/' + sharedMeetingId + '/', true);
-            console.log(result);
             return result.data;
         }
         catch{

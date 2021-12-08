@@ -28,15 +28,11 @@ class SharedMeetingController{
 
     async getSharedMeeting(request, response){
         try{
-            console.log("++++++++++++++++++++");
             const sharedMeetingId = request.params.sharedMeetingId;
-            console.log("===============================");
 
 
             const result = await SharedMeetingService.getSharedMeeting(sharedMeetingId);
 
-            console.log("===============================");
-            console.log(result);
 
             response.status(200).send(result);
         }
