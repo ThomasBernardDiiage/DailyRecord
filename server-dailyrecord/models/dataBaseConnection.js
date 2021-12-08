@@ -5,6 +5,7 @@ const MeetingModel = require('./meetingModel');
 const StampModel = require('./stampModel');
 const UserProjectModel = require('./userProjectModel');
 const CommentModel = require('./commentModel');
+const SharedMeetingModel = require('./sharedMeetingModel');
 const Config = require('../config');
 
 class DataBaseConnection {
@@ -24,6 +25,7 @@ class DataBaseConnection {
       await StampModel.init(this.sequelize);
       await UserProjectModel.init(this.sequelize);
       await CommentModel.init(this.sequelize);
+      await SharedMeetingModel.init(this.sequelize);
 
       // Gestion des associations
       UserModel.belongsToMany(ProjectModel, {
@@ -41,6 +43,10 @@ class DataBaseConnection {
       ProjectModel.hasMany(MeetingModel, {
         foreignKey: 'projectId'
       }); // Un meeting appartient à un projet
+
+      MeetingModel.hasMany(SharedMeetingModel, {
+        foreignKey: 'meetingId'
+      })
 
       MeetingModel.hasMany(StampModel, {
         foreignKey: 'meetingId'
