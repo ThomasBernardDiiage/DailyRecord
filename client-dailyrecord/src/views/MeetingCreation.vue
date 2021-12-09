@@ -105,7 +105,6 @@
                     this.mediaRecorder.ondataavailable = (e) => { this.chunks.push(e.data);};
                     this.mediaRecorder.onstop = () => {
                         this.audioSource = window.URL.createObjectURL(this.chunks[0]);
-                        console.log(this.audioSource);
                     };
                     this.mediaRecorder.start();
                  })

@@ -164,13 +164,12 @@
                 const result = await this.meetingService.createSharedMeeting(this.meeting.id);
 
                 if(result){
-                    this.shareUrl = "http://localhost:8080/sharedMeeting/"+result;
-                    alert("Your meeting link : http://localhost:8080/sharedMeeting/"+result)
+                    this.shareUrl = Config.clientUrl + 'sharedMeeting/' + result;
                 }
 
                 else {
                     alert('error');
-                }
+             }
 
 
             },
