@@ -4,6 +4,23 @@
 //#endregion
 
 export default class MeetingService{
+
+    async createSharedMeeting(meetingId){
+        const result = await ApiService.sendPostWithToken('sharedMeeting', {meetingId}, false);
+
+        return result.data
+    }
+
+    async getSharedMeeting(sharedMeetingId){
+        try {
+            const result = await ApiService.sendGetWithToken('sharedMeeting/' + sharedMeetingId + '/', true);
+            return result.data;
+        }
+        catch{
+            return false;
+        }
+    }
+
     
     async createMeeting(name, audioBlob, date, projectId){
 

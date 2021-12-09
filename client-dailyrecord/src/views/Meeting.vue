@@ -24,7 +24,16 @@
                     <button @click="createComment()" class="buttonBlue">Add comment</button>
                 </div>
             </section>
-            <ButtonGoback @click.native="goback()"></ButtonGoback>
+            <section>
+                <ButtonGoback @click.native="goback()"></ButtonGoback>
+
+
+                    <div class="inputButton">
+                        <input v-bind:value="shareUrl" type="text">
+                        <button @click="shareMeeting()" class="buttonBlue" style="background-color:green">Share</button>
+                    </div>
+            </section>
+            
         </section>
     </section>
 </template>
@@ -80,6 +89,28 @@
         height: 200px;
     }
 
+    section.container input.urlInput{
+        justify-content: flex-end;
+    }
+
+    div.inputButton{
+        display: flex;
+        flex-direction: row !important;
+        width: auto !important;
+    }
+
+    div.inputButton * {
+        margin: 5px;
+    }
+
+    div.inputButton button{
+        height: auto !important;
+    }
+
+    div.inputButton input {
+        width: 300px;
+    }
+
 
 </style>
 
@@ -107,7 +138,8 @@
                 commentService:undefined,
                 timeStamp:undefined,
                 meeting : undefined,
-                file :undefined
+                file :undefined,
+                shareUrl : ''
             }
         },
         async mounted(){
@@ -127,6 +159,19 @@
         methods: {
             goback(){
                 Router.push('/project/' + this.$route.params.projectId);
+            },
+            async shareMeeting(){
+                const result = await this.meetingService.createSharedMeeting(this.meeting.id);
+
+                if(result){
+                    this.shareUrl = Config.clientUrl + 'sharedMeeting/' + result;
+                }
+
+                else {
+                    alert('error');
+             }
+
+
             },
             async createComment(){
                 const text = await prompt("Enter the text of the comment :");

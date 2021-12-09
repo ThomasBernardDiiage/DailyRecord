@@ -45,11 +45,15 @@ const routes = [
     component: () => import('../views/Meeting.vue')
   },
   {
+    path: '/sharedMeeting/:sharedMeetingId',
+    name : 'SharedMeeting',
+    component: () => import('../views/SharedMeeting.vue')
+  },
+  {
     path: '*',
     name: 'Teapot',
     component: () => import('../views/Teapot.vue')
   }
-  
 ]
 
 const router = new VueRouter({

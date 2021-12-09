@@ -85,6 +85,10 @@ class MeetingService{
             return false;
         }
     }
+
+    async createSharedMeeting(){
+        
+    }
 }
 
 module.exports = new MeetingService();
