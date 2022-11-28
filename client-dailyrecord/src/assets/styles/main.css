@@ -1,0 +1,48 @@
+section.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('../images/background.jpg');
+    background-position:center;
+    background-size: cover;
+}
+
+
+.buttonBlue{
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(61, 147, 236);
+    margin: 7px 0;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.buttonBlue:hover{
+    background-color: rgb(40, 97, 158);
+}
+
+.buttonBlueDisabled{
+    background-color: rgb(40, 97, 158);
+    cursor:not-allowed;
+}
+
+label {
+    align-self: start;
+}
+input:not([type="Submit"]){
+    margin: 7px 0;
+    padding: 5px;
+}
+
+textarea{
+    resize: none;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+span.border{
+    border: solid gray 1px;
+    border-radius: 3px;
+    margin: 7px 0;
+}
